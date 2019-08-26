@@ -63,15 +63,15 @@ void create_tasks( void ) {
      * Create each task: links with a routine, allocates the requested task
      * stack size, sets the priority, passes parameters and get a handler
      */
-    //xTaskCreate( wdt_task, "WDT", configMINIMAL_STACK_SIZE, NULL, WDT_TASK_PRIORITY, &wdt_task_handle );
+    xTaskCreate( wdt_task, "WDT", configMINIMAL_STACK_SIZE, NULL, WDT_TASK_PRIORITY, &wdt_task_handle );
     xTaskCreate( communications_task, "Communications", 6 * configMINIMAL_STACK_SIZE, NULL, COMMUNICATIONS_TASK_PRIORITY, &communications_task_handle );
-    //xTaskCreate( store_data_task, "StoreData", 11 * configMINIMAL_STACK_SIZE, NULL , STORE_DATA_TASK_PRIORITY, &store_data_task_handle);
-    //xTaskCreate( housekeeping_task, "Housekeeping", configMINIMAL_STACK_SIZE, NULL, HOUSEKEEPING_TASK_PRIORITY, &housekeeping_task_handle);
-    //xTaskCreate( ttc_interface_task, "TT&C", 4 * configMINIMAL_STACK_SIZE, NULL, TTC_INTERFACE_TASK_PRIORITY, &ttc_interface_task_handle );
+    xTaskCreate( store_data_task, "StoreData", 11 * configMINIMAL_STACK_SIZE, NULL , STORE_DATA_TASK_PRIORITY, &store_data_task_handle);
+    xTaskCreate( housekeeping_task, "Housekeeping", configMINIMAL_STACK_SIZE, NULL, HOUSEKEEPING_TASK_PRIORITY, &housekeeping_task_handle);
+    xTaskCreate( ttc_interface_task, "TT&C", 4 * configMINIMAL_STACK_SIZE, NULL, TTC_INTERFACE_TASK_PRIORITY, &ttc_interface_task_handle );
     //xTaskCreate( eps_interface_task, "EPS", configMINIMAL_STACK_SIZE, NULL, EPS_INTERFACE_TASK_PRIORITY, &eps_interface_task_handle );
     //xTaskCreate( imu_interface_task, "IMU", configMINIMAL_STACK_SIZE, NULL, IMU_INTERFACE_TASK_PRIORITY, &imu_interface_task_handle);
     //xTaskCreate( solar_panels_interface_task, "SolarPanels", configMINIMAL_STACK_SIZE, NULL, SOLAR_PANELS_INTERFACE_TASK_PRIORITY, &solar_panels_interface_task_handle);
-    //xTaskCreate( payload_rush_interface_task, "PayloadRush", configMINIMAL_STACK_SIZE, NULL, PAYLOAD_RUSH_INTERFACE_TASK_PRIORITY, &payload_rush_interface_task_handle );
+    xTaskCreate( payload_rush_interface_task, "PayloadRush", configMINIMAL_STACK_SIZE, NULL, PAYLOAD_RUSH_INTERFACE_TASK_PRIORITY, &payload_rush_interface_task_handle );
 #ifdef _DEBUG
     //xTaskCreate( debug_task, "DEBUG", 4 * configMINIMAL_STACK_SIZE, NULL, DEBUG_TASK_PRIORITY, &debug_task_handle);
 #endif
@@ -150,6 +150,21 @@ void setup_hardware( void ) {
     PM5CTL0 &= ~LOCKLPM5;
 
     //debug("\n --- Boot completed ---\n");
+}
+
+void vConfigureTimerForRunTimeStats( void )
+{
+    /* Configure a timer that is used as the time base for run time stats.  See
+    http://www.freertos.org/rtos-run-time-stats.html */
+
+    /* Ensure the timer is stopped. */
+    TA1CTL = 0;
+
+    /* Start up clean. */
+    TA1CTL |= TACLR;
+
+    /* Run the timer from the ACLK/8, continuous mode, interrupt enable. */
+    TA1CTL = TASSEL_1 | ID__8 | MC__CONTINUOUS | TAIE;
 }
 
 void hibernate(void) {

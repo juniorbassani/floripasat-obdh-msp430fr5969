@@ -46,11 +46,13 @@ void housekeeping_task( void *pvParameters ) {
     uint32_t current_time;
     uint8_t current_seconds;
     uint8_t flag_updated_time = 0;
+    char stats[240];
+
 
     last_wake_time = xTaskGetTickCount();
 
     while(1) {
-        //P4OUT ^= BIT6;
+        P4OUT ^= BIT6;
         /* Periodic reset */
         current_time = xTaskGetTickCount() / (uint32_t) configTICK_RATE_HZ;
         if (current_time >= PERIODIC_RESET_TIME) {
@@ -154,6 +156,8 @@ void housekeeping_task( void *pvParameters ) {
         xQueueSendToBack(obdh_uptime_queue, (void *)&system_time, portMAX_DELAY);
 
         xQueueSendToBack(obdh_misc_queue, (void *)internal_sensors_data, portMAX_DELAY);
+
+        //vTaskGetRunTimeStats(stats);
 
         if ( (last_wake_time + HOUSEKEEPING_TASK_PERIOD_TICKS) < xTaskGetTickCount() ) {
             last_wake_time = xTaskGetTickCount();

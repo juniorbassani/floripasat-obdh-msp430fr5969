@@ -48,7 +48,7 @@ __persistent keyword to be used.  See http://www.freertos.org/a00111.html#heap_4
 #define configTICK_RATE_HZ						( 1000 ) /* In this non-real time simulated environment the tick frequency has to be at least a multiple of the Win32 tick frequency, and therefore very slow. */
 #define configTOTAL_HEAP_SIZE					( 14 * 1024 )
 #define configMAX_TASK_NAME_LEN					( 15 )
-#define configUSE_TRACE_FACILITY				0
+#define configUSE_TRACE_FACILITY				1
 #define configUSE_16_BIT_TICKS					0
 #define configIDLE_SHOULD_YIELD					1
 #define configUSE_CO_ROUTINES 					0
@@ -99,6 +99,12 @@ left at 1 with no impact on the code size. */
 #define INCLUDE_xEventGroupSetBitsFromISR		1
 #define INCLUDE_xTimerPendFunctionCall			0
 #define INCLUDE_xTaskGetHandle                  1
+
+/* Run time stats gathering definitions. */
+#define configGENERATE_RUN_TIME_STATS   1
+#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS() vConfigureTimerForRunTimeStats()
+/* Return the current timer counter value + the overflow counter. */
+#define portGET_RUN_TIME_COUNTER_VALUE()    ( ( ( uint32_t ) TA1R ) + ulRunTimeCounterOverflows )
 
 /* Include functions that format system and run-time stats into human readable
 tables. */

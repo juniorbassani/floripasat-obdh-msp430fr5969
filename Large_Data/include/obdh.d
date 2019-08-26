@@ -18,7 +18,7 @@ include/obdh.obj: ../include/../FreeRTOS_Source/include/../../src/FreeRTOSConfig
 include/obdh.obj: ../include/../FreeRTOS_Source/include/projdefs.h
 include/obdh.obj: ../include/../FreeRTOS_Source/include/portable.h
 include/obdh.obj: ../include/../FreeRTOS_Source/include/deprecated_definitions.h
-include/obdh.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h
+include/obdh.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h
 include/obdh.obj: /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/msp430.h
 include/obdh.obj: /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/msp430fr5969.h
 include/obdh.obj: /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/in430.h
@@ -44,12 +44,12 @@ include/obdh.obj: ../include/../driver/wdti.h
 include/obdh.obj: ../include/../interface/eps.h
 include/obdh.obj: ../include/../interface/../include/floripasat_def.h
 include/obdh.obj: ../include/../interface/../util/crc.h
+include/obdh.obj: ../include/../src/task_queues.h
 include/obdh.obj: ../include/../src/communications_task.h
 include/obdh.obj: ../include/../src/../include/msp_internal.h
 include/obdh.obj: ../include/../src/../include/../driver/flash.h
 include/obdh.obj: ../include/../src/../util/link.h
 include/obdh.obj: ../include/../src/../util/../src/store_data_task.h
-include/obdh.obj: ../include/../src/../util/../src/task_queues.h
 include/obdh.obj: ../include/../src/../util/../src/../util/MMC_lib/mmc.h
 include/obdh.obj: ../include/../src/../util/../src/../util/MMC_lib/hal_MMC_hardware_board.h
 include/obdh.obj: ../include/../src/../interface/ttc.h
@@ -84,7 +84,7 @@ include/obdh.obj: ../include/../src/wdt_task.h
 ../include/../FreeRTOS_Source/include/projdefs.h: 
 ../include/../FreeRTOS_Source/include/portable.h: 
 ../include/../FreeRTOS_Source/include/deprecated_definitions.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h: 
 /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/msp430.h: 
 /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/msp430fr5969.h: 
 /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/in430.h: 
@@ -110,12 +110,12 @@ include/obdh.obj: ../include/../src/wdt_task.h
 ../include/../interface/eps.h: 
 ../include/../interface/../include/floripasat_def.h: 
 ../include/../interface/../util/crc.h: 
+../include/../src/task_queues.h: 
 ../include/../src/communications_task.h: 
 ../include/../src/../include/msp_internal.h: 
 ../include/../src/../include/../driver/flash.h: 
 ../include/../src/../util/link.h: 
 ../include/../src/../util/../src/store_data_task.h: 
-../include/../src/../util/../src/task_queues.h: 
 ../include/../src/../util/../src/../util/MMC_lib/mmc.h: 
 ../include/../src/../util/../src/../util/MMC_lib/hal_MMC_hardware_board.h: 
 ../include/../src/../interface/ttc.h: 

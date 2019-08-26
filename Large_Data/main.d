@@ -18,7 +18,7 @@ main.obj: ../include/../FreeRTOS_Source/include/../../src/FreeRTOSConfig.h
 main.obj: ../include/../FreeRTOS_Source/include/projdefs.h
 main.obj: ../include/../FreeRTOS_Source/include/portable.h
 main.obj: ../include/../FreeRTOS_Source/include/deprecated_definitions.h
-main.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h
+main.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h
 main.obj: /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/msp430.h
 main.obj: /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/msp430fr5969.h
 main.obj: /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/in430.h
@@ -44,12 +44,12 @@ main.obj: ../include/../driver/wdti.h
 main.obj: ../include/../interface/eps.h
 main.obj: ../include/../interface/../include/floripasat_def.h
 main.obj: ../include/../interface/../util/crc.h
+main.obj: ../include/../src/task_queues.h
 main.obj: ../include/../src/communications_task.h
 main.obj: ../include/../src/../include/msp_internal.h
 main.obj: ../include/../src/../include/../driver/flash.h
 main.obj: ../include/../src/../util/link.h
 main.obj: ../include/../src/../util/../src/store_data_task.h
-main.obj: ../include/../src/../util/../src/task_queues.h
 main.obj: ../include/../src/../util/../src/../util/MMC_lib/mmc.h
 main.obj: ../include/../src/../util/../src/../util/MMC_lib/hal_MMC_hardware_board.h
 main.obj: ../include/../src/../interface/ttc.h
@@ -85,7 +85,7 @@ main.obj: ../config.h
 ../include/../FreeRTOS_Source/include/projdefs.h: 
 ../include/../FreeRTOS_Source/include/portable.h: 
 ../include/../FreeRTOS_Source/include/deprecated_definitions.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h: 
 /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/msp430.h: 
 /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/msp430fr5969.h: 
 /home/junior/ti/ccs910/ccs/ccs_base/msp430/include/in430.h: 
@@ -111,12 +111,12 @@ main.obj: ../config.h
 ../include/../interface/eps.h: 
 ../include/../interface/../include/floripasat_def.h: 
 ../include/../interface/../util/crc.h: 
+../include/../src/task_queues.h: 
 ../include/../src/communications_task.h: 
 ../include/../src/../include/msp_internal.h: 
 ../include/../src/../include/../driver/flash.h: 
 ../include/../src/../util/link.h: 
 ../include/../src/../util/../src/store_data_task.h: 
-../include/../src/../util/../src/task_queues.h: 
 ../include/../src/../util/../src/../util/MMC_lib/mmc.h: 
 ../include/../src/../util/../src/../util/MMC_lib/hal_MMC_hardware_board.h: 
 ../include/../src/../interface/ttc.h: 

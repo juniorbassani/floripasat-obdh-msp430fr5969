@@ -28,19 +28,19 @@ src/payload_rush_interface_task.obj: /home/junior/ti/ccs910/ccs/tools/compiler/t
 src/payload_rush_interface_task.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/_ti_config.h
 src/payload_rush_interface_task.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/linkage.h
 src/payload_rush_interface_task.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/stdarg.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/FreeRTOS.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/FreeRTOS.h
 src/payload_rush_interface_task.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/stddef.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/../../src/FreeRTOSConfig.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/projdefs.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/portable.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/deprecated_definitions.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/mpu_wrappers.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/task.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/list.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/../../src/FreeRTOSConfig.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/projdefs.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/portable.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/deprecated_definitions.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/mpu_wrappers.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/task.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/list.h
 src/payload_rush_interface_task.obj: ../src/task_queues.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/queue.h
-src/payload_rush_interface_task.obj: /home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/semphr.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/queue.h
+src/payload_rush_interface_task.obj: /home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/semphr.h
 src/payload_rush_interface_task.obj: ../src/../interface/payload_rush.h
 src/payload_rush_interface_task.obj: ../src/../interface/../driver/i2c.h
 
@@ -72,18 +72,18 @@ src/payload_rush_interface_task.obj: ../src/../interface/../driver/i2c.h
 /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/_ti_config.h: 
 /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/linkage.h: 
 /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/stdarg.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/FreeRTOS.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/FreeRTOS.h: 
 /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/stddef.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/../../src/FreeRTOSConfig.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/projdefs.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/portable.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/deprecated_definitions.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/mpu_wrappers.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/task.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/list.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/../../src/FreeRTOSConfig.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/projdefs.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/portable.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/deprecated_definitions.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/portable/CCS/MSP430X/portmacro.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/mpu_wrappers.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/task.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/list.h: 
 ../src/task_queues.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/queue.h: 
-/home/junior/junior/ccs/floripasat_new/FreeRTOS_Source/include/semphr.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/queue.h: 
+/home/junior/Documents/floripasat-obdh-msp430fr5969/FreeRTOS_Source/include/semphr.h: 
 ../src/../interface/payload_rush.h: 
 ../src/../interface/../driver/i2c.h: 

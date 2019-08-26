@@ -45,7 +45,7 @@
 //#include "../interface/wdte.h"
 #include "../interface/eps.h"
 //#include "../include/antenna.h"
-//#include "../src/task_queues.h"
+#include "../src/task_queues.h"
 #include "../src/communications_task.h"
 //#include "../src/debug_task.h"
 //#include "../src/eps_interface_task.h"

@@ -49,7 +49,7 @@ void ttc_interface_task( void *pvParameters ) {
 
     while(1) {
 
-        //P1OUT ^= BIT0;
+        P1OUT ^= BIT0;
         xSemaphoreTake(fsp_semaphore, FSP_SEMAPHORE_WAIT_TIME);
         send_data_packet();
         xSemaphoreGive(fsp_semaphore);

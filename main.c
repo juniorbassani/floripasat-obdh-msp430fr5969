@@ -39,6 +39,9 @@ See http://www.freertos.org/a00111.html for more information. */
 #endif
 uint8_t ucHeap[ configTOTAL_HEAP_SIZE ] = { 0 };
 
+/* Used for maintaining a 32-bit run time stats counter from a 16-bit timer. */
+volatile uint32_t ulRunTimeCounterOverflows = 0;
+
 /*-----------------------------------------------------------*/
 
 int main( void )

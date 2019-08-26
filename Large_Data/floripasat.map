@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker Unix v18.12.2                  
 ******************************************************************************
->> Linked Thu Aug 22 17:32:30 2019
+>> Linked Mon Aug 26 18:53:37 2019
 
 OUTPUT FILE NAME:   <floripasat.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00008000
@@ -18,8 +18,8 @@ MEMORY CONFIGURATION
   INFOC                 00001880   00000080  00000000  00000080  RWIX
   INFOB                 00001900   00000080  00000000  00000080  RWIX
   INFOA                 00001980   00000080  00000000  00000080  RWIX
-  RAM                   00001c00   00000800  00000633  000001cd  RWIX
-  FRAM                  00004400   0000bb80  00004160  00007a20  RWIX
+  RAM                   00001c00   00000800  00000685  0000017b  RWIX
+  FRAM                  00004400   0000bb80  00005c5c  00005f24  RWIX
   JTAGSIGNATURE         0000ff80   00000004  00000004  00000000  RWIX  ffff 
   BSLSIGNATURE          0000ff84   00000004  00000004  00000000  RWIX  ffff 
   IPESIGNATURE          0000ff88   00000008  00000008  00000000  RWIX  ffff 
@@ -79,7 +79,7 @@ MEMORY CONFIGURATION
   INT53                 0000fffa   00000002  00000002  00000000  RWIX
   INT54                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FRAM2                 00010000   00004000  00003d02  000002fe  RWIX
+  FRAM2                 00010000   00004000  00004000  00000000  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -105,11 +105,12 @@ section   page    origin      length       input sections
                   00007c00    00000008     rts430x_lc_ld_eabi.lib : memory.c.obj (.sysmem) [fill = 0]
                   00007c08    00000098     --HOLE-- [fill = 0]
 
-.cinit     0    00008534    0000002c     
-                  00008534    0000000c     (__TI_handler_table)
-                  00008540    0000000a     (.cinit..data.load) [load image, compression = lzss]
-                  0000854a    00000006     (.cinit..bss.load) [load image, compression = zero_init]
-                  00008550    00000010     (__TI_cinit_table)
+.cinit     0    0000a02e    0000002e     
+                  0000a02e    0000000c     (__TI_handler_table)
+                  0000a03a    0000000b     (.cinit..data.load) [load image, compression = lzss]
+                  0000a045    00000001     --HOLE-- [fill = 0]
+                  0000a046    00000006     (.cinit..bss.load) [load image, compression = zero_init]
+                  0000a04c    00000010     (__TI_cinit_table)
 
 .init_array 
 *          0    00004400    00000000     UNINITIALIZED
@@ -121,53 +122,235 @@ section   page    origin      length       input sections
                   0000802c    0000000a     wdti.obj (.text:_isr:WDT_ISR)
                   00008036    00000008     rts430x_lc_ld_eabi.lib : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
 
-.bss       0    00001c00    00000563     UNINITIALIZED
+.bss       0    00001c00    000005a4     UNINITIALIZED
                   00001c00    0000020a     (.common:rx_pkt)
                   00001e0a    0000010e     tasks.obj (.bss:pxReadyTasksLists)
                   00001f18    000000ca     (.common:satellite_data)
                   00001fe2    000000b6     (.common:rs_cb)
-                  00002098    00000012     tasks.obj (.bss:xDelayedTaskList1)
-                  000020aa    00000012     tasks.obj (.bss:xDelayedTaskList2)
-                  000020bc    00000012     tasks.obj (.bss:xPendingReadyList)
-                  000020ce    00000012     tasks.obj (.bss:xSuspendedTaskList)
-                  000020e0    00000012     tasks.obj (.bss:xTasksWaitingTermination)
-                  000020f2    00000008     ngham.obj (.bss)
-                  000020fa    00000008     tasks.obj (.bss)
-                  00002102    00000004     obdh.obj (.bss)
-                  00002106    00000004     (.common:command_to_payload_rush_queue)
-                  0000210a    00000004     (.common:eps_charge_queue)
-                  0000210e    00000004     (.common:eps_queue)
-                  00002112    00000004     (.common:flash_semaphore)
-                  00002116    00000004     (.common:fsp_semaphore)
-                  0000211a    00000004     (.common:i2c0_semaphore)
-                  0000211e    00000004     (.common:imu_queue)
-                  00002122    00000004     (.common:last_read_position)
-                  00002126    00000004     (.common:main_radio_queue)
-                  0000212a    00000004     (.common:obdh_misc_queue)
-                  0000212e    00000004     (.common:obdh_status_queue)
-                  00002132    00000004     (.common:obdh_uptime_queue)
-                  00002136    00000004     (.common:payload_brave_queue)
-                  0000213a    00000004     (.common:payload_rush_queue)
-                  0000213e    00000004     (.common:solar_panels_queue)
-                  00002142    00000004     (.common:spi1_semaphore)
-                  00002146    00000004     (.common:status_eps_queue)
-                  0000214a    00000004     (.common:status_imu_queue)
-                  0000214e    00000004     (.common:status_mem1_queue)
-                  00002152    00000004     (.common:status_payload_brave_queue)
-                  00002156    00000004     (.common:status_payload_rush_queue)
-                  0000215a    00000004     (.common:ttc_queue)
-                  0000215e    00000004     (.common:tx_queue)
-                  00002162    00000001     (.common:decoder_state)
+                  00002098    00000020     (.common:rush_data)
+                  000020b8    00000018     obdh.obj (.bss)
+                  000020d0    00000012     tasks.obj (.bss:xDelayedTaskList1)
+                  000020e2    00000012     tasks.obj (.bss:xDelayedTaskList2)
+                  000020f4    00000012     tasks.obj (.bss:xPendingReadyList)
+                  00002106    00000012     tasks.obj (.bss:xSuspendedTaskList)
+                  00002118    00000012     tasks.obj (.bss:xTasksWaitingTermination)
+                  0000212a    00000008     ngham.obj (.bss)
+                  00002132    00000008     tasks.obj (.bss)
+                  0000213a    00000004     (.common:card_size)
+                  0000213e    00000004     (.common:command_to_payload_rush_queue)
+                  00002142    00000004     (.common:current_data_address)
+                  00002146    00000004     (.common:eps_charge_queue)
+                  0000214a    00000004     (.common:eps_queue)
+                  0000214e    00000004     (.common:flash_semaphore)
+                  00002152    00000004     (.common:fsp_semaphore)
+                  00002156    00000004     (.common:i2c0_semaphore)
+                  0000215a    00000004     (.common:imu_queue)
+                  0000215e    00000004     (.common:last_read_position)
+                  00002162    00000004     (.common:last_write_position)
+                  00002166    00000004     (.common:main_radio_queue)
+                  0000216a    00000004     (.common:obdh_misc_queue)
+                  0000216e    00000004     (.common:obdh_status_queue)
+                  00002172    00000004     (.common:obdh_uptime_queue)
+                  00002176    00000004     (.common:payload_brave_queue)
+                  0000217a    00000004     (.common:payload_rush_queue)
+                  0000217e    00000004     (.common:solar_panels_queue)
+                  00002182    00000004     (.common:spi1_semaphore)
+                  00002186    00000004     (.common:status_eps_queue)
+                  0000218a    00000004     (.common:status_imu_queue)
+                  0000218e    00000004     (.common:status_mem1_queue)
+                  00002192    00000004     (.common:status_payload_brave_queue)
+                  00002196    00000004     (.common:status_payload_rush_queue)
+                  0000219a    00000004     (.common:ttc_queue)
+                  0000219e    00000004     (.common:tx_queue)
+                  000021a2    00000001     (.common:decoder_state)
+                  000021a3    00000001     (.common:fsp_my_adr)
 
-.data      0    00002164    00000030     UNINITIALIZED
-                  00002164    00000022     tasks.obj (.data)
-                  00002186    00000008     heap_1.obj (.data)
-                  0000218e    00000004     msp_internal.obj (.data)
-                  00002192    00000002     port.obj (.data)
+.data      0    000021a4    00000041     UNINITIALIZED
+                  000021a4    0000002a     tasks.obj (.data)
+                  000021ce    00000008     heap_1.obj (.data)
+                  000021d6    00000004     main.obj (.data)
+                  000021da    00000004     msp_internal.obj (.data)
+                  000021de    00000004     payload_rush_interface_task.obj (.data)
+                  000021e2    00000002     port.obj (.data)
+                  000021e4    00000001     fsp.obj (.data)
 
 .stack     0    00002360    000000a0     UNINITIALIZED
                   00002360    00000004     rts430x_lc_ld_eabi.lib : boot.c.obj (.stack)
                   00002364    0000009c     --HOLE--
+
+.text.1    0    0000803e    000019cc     
+                  0000803e    00000062     store_data_task.obj (.text:mmc_write_sector)
+                  000080a0    00000062     tasks.obj (.text:prvInitialiseTaskLists)
+                  00008102    00000060     payload_rush.obj (.text:rush_power_state)
+                  00008162    0000005e     payload_rush.obj (.text:rush_write)
+                  000081c0    0000005e     store_data_task.obj (.text:update_last_read_position)
+                  0000821e    0000005c     ttc.obj (.text:send_data_packet)
+                  0000827a    0000005a     mmc.obj (.text:mmcCheckBusy)
+                  000082d4    0000005a     rf4463.obj (.text:rf4463_set_config)
+                  0000832e    00000058     rf4463.obj (.text:rf4463_tx_packet)
+                  00008386    00000058     rts430x_lc_ld_eabi.lib : div32u.asm.obj (.text)
+                  000083de    00000058     tasks.obj (.text:vTaskStartScheduler)
+                  00008436    00000058     queue.obj (.text:xQueueGenericCreate)
+                  0000848e    00000054     list.obj (.text:vListInsert)
+                  000084e2    00000054     wdt_task.obj (.text:wdt_task)
+                  00008536    00000052     platform.obj (.text:ngham_ActionHandlePacket)
+                  00008588    00000052     communications_task.obj (.text:send_data)
+                  000085da    00000050     mmc.obj (.text:mmcSendCmd)
+                  0000862a    00000050     mmc.obj (.text:mmcSetBlockLength)
+                  0000867a    00000050     rf4463.obj (.text:rf4463_set_properties)
+                  000086ca    0000004e     fsp.obj (.text:fsp_gen_pkt)
+                  00008718    0000004e     mmc.obj (.text:mmcInit)
+                  00008766    0000004e     ttc_interface_task.obj (.text:send_shutdown)
+                  000087b4    0000004c     rf4463.obj (.text:rf4463_get_cmd)
+                  00008800    0000004a     hal_SPI.obj (.text:spiSendFrame)
+                  0000884a    00000048     store_data_task.obj (.text:get_last_read_pointer)
+                  00008892    00000048     msp_internal.obj (.text:update_time_counter)
+                  000088da    00000046     store_data_task.obj (.text:mmc_read_sector)
+                  00008920    00000044     msp_internal.obj (.text:restore_time_counter)
+                  00008964    00000044     obdh.obj (.text:setup_hardware)
+                  000089a8    00000044     hal_SPI.obj (.text:spiReadFrame)
+                  000089ec    00000044     sspi.obj (.text:sspi_send_bit)
+                  00008a30    00000040     ngham_packets.obj (.text:ngham_TxPktGen)
+                  00008a70    00000040     msp_internal.obj (.text:update_reset_value)
+                  00008ab0    0000003e     fsp.obj (.text:fsp_gen_cmd_pkt)
+                  00008aee    0000003e     i2c.obj (.text:i2c_setup)
+                  00008b2c    0000003e     rts430x_lc_ld_eabi.lib : asr32.asm.obj (.text:l_asr_const)
+                  00008b6a    0000003e                            : lsl32.asm.obj (.text:l_lsl_const)
+                  00008ba8    0000003e                            : lsr32.asm.obj (.text:l_lsr_const)
+                  00008be6    0000003e     msp_internal.obj (.text:read_current_state)
+                  00008c24    0000003e     rf4463.obj (.text:rf4463_power_on_reset)
+                  00008c62    0000003c     rts430x_lc_ld_eabi.lib : memcpy.c.obj (.text:memcpy)
+                  00008c9e    0000003c     ngham_packets.obj (.text:ngham_RxPktInit)
+                  00008cda    0000003c     communications_task.obj (.text:request_antenna_mutex)
+                  00008d16    0000003a     ngham.obj (.text:ngham_TagCheck)
+                  00008d50    0000003a     list.obj (.text:uxListRemove)
+                  00008d8a    00000038     store_data_task.obj (.text:pack_module_data)
+                  00008dc2    00000038     rf4463.obj (.text:rf4463_check_cts)
+                  00008dfa    00000038     rf4463.obj (.text:rf4463_reg_config)
+                  00008e32    00000036     rf4463.obj (.text:rf4463_check_device)
+                  00008e68    00000036     sspi.obj (.text:sspi_tx)
+                  00008e9e    00000036     msp_internal.obj (.text:update_operation_mode)
+                  00008ed4    00000034     crc16.obj (.text:crc16_CCITT)
+                  00008f08    00000034     rts430x_lc_ld_eabi.lib : memcmp.c.obj (.text:memcmp)
+                  00008f3c    00000034     queue.obj (.text:prvCopyDataFromQueue)
+                  00008f70    00000034     rf4463.obj (.text:rf4463_enter_rx_mode)
+                  00008fa4    00000034     tasks.obj (.text:vTaskDelay)
+                  00008fd8    00000032     platform.obj (.text:ngham_ActionSendData)
+                  0000900a    00000032     tasks.obj (.text:prvTaskIsTaskSuspended)
+                  0000903c    00000032     rf4463.obj (.text:rf4463_set_tx_power)
+                  0000906e    00000032     payload_rush_interface_task.obj (.text:rush_overtemperature_check)
+                  000090a0    00000030     rf4463.obj (.text:rf4463_read_rx_fifo)
+                  000090d0    00000030     rf4463.obj (.text:rf4463_set_cmd)
+                  00009100    00000030     ttc_interface_task.obj (.text:send_mutex_request)
+                  00009130    00000030     tasks.obj (.text:vTaskPlaceOnEventList)
+                  00009160    0000002e     i2c.obj (.text:i2c_set_clock)
+                  0000918e    0000002e     queue.obj (.text:prvIsQueueFull)
+                  000091bc    0000002e     tasks.obj (.text:prvResetNextTaskUnblockTime)
+                  000091ea    0000002c     crc_ccitt.obj (.text:ngham_CRC_CCITT)
+                  00009216    0000002c     queue.obj (.text:prvIsQueueEmpty)
+                  00009242    0000002c     list.obj (.text:vListInitialise)
+                  0000926e    0000002a     queue.obj (.text:prvInitialiseNewQueue)
+                  00009298    0000002a     rf4463.obj (.text:rf4463_rx_init)
+                  000092c2    0000002a     rf4463.obj (.text:rf4463_wait_packet_sent)
+                  000092ec    00000028     fsp.obj (.text:fsp_gen_data_pkt)
+                  00009314    00000028     i2c.obj (.text:i2c_pin_reset)
+                  0000933c    00000028     queue.obj (.text:prvInitialiseMutex)
+                  00009364    00000028     rf4463.obj (.text:rf4463_enter_tx_mode)
+                  0000938c    00000028     rf4463.obj (.text:rf4463_set_rx_interrupt)
+                  000093b4    00000028     rf4463.obj (.text:rf4463_write_tx_fifo)
+                  000093dc    00000028     tasks.obj (.text:xTaskGetTickCount)
+                  00009404    00000026     rf4463.obj (.text:rf4463_clear_interrupts)
+                  0000942a    00000026     spi.obj (.text:spi_rx_multiple)
+                  00009450    00000026     obdh.obj (.text:vApplicationSetupTimerInterrupt)
+                  00009476    00000026     list.obj (.text:vListInsertEnd)
+                  0000949c    00000024     rts430x_lc_ld_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
+                  000094c0    00000024     mmc.obj (.text:mmcGetResponse)
+                  000094e4    00000024     port.obj (.text:pxPortInitialiseStack)
+                  00009508    00000024     rf4463.obj (.text:rf4463_init)
+                  0000952c    00000024     rts430x_lc_ld_eabi.lib : mult32_f5hw.asm.obj (.text)
+                  00009550    00000024     spi.obj (.text:spi_setup)
+                  00009574    00000022     mmc.obj (.text:mmcGetXXResponse)
+                  00009596    00000022     spi.obj (.text:spi_clock_setup)
+                  000095b8    00000022     spi.obj (.text:spi_tx_multiple)
+                  000095da    00000022     sspi.obj (.text:sspi_rx_multiple)
+                  000095fc    00000022     tasks.obj (.text:vTaskSetTimeOutState)
+                  0000961e    00000022     wdti.obj (.text:wdti_setup)
+                  00009640    00000020     rts430x_lc_ld_eabi.lib : memset.c.obj (.text:memset)
+                  00009660    0000001e     sspi.obj (.text:sspi_tx_multiple)
+                  0000967e    0000001c     hal_SPI.obj (.text:halSPISetup)
+                  0000969a    0000001c     tasks.obj (.text:pvTaskIncrementMutexHeldCount)
+                  000096b6    0000001c     rf4463.obj (.text:rf4463_gpio_init)
+                  000096d2    0000001a     obdh.obj (.text:gpio_setup)
+                  000096ec    0000001a     spi.obj (.text:spi_tx)
+                  00009706    00000018     rf4463.obj (.text:rf4463_fifo_reset)
+                  0000971e    00000018     rts430x_lc_ld_eabi.lib : mult16_f5hw.asm.obj (.text)
+                  00009736    00000018     queue.obj (.text:xQueueCreateMutex)
+                  0000974e    00000018     tasks.obj (.text:xTaskGetSchedulerState)
+                  00009766    00000016     rts430x_lc_ld_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  0000977c    00000016     tasks.obj (.text:prvDeleteTCB)
+                  00009792    00000016     tasks.obj (.text:prvIdleTask)
+                  000097a8    00000016     rf4463.obj (.text:rf4463_enter_standby_mode)
+                  000097be    00000014     hal_SPI.obj (.text:spiSendByte)
+                  000097d2    00000014     wdti.obj (.text:wdti_release_counter)
+                  000097e6    00000012     fec.obj (.text:encode_rs_char)
+                  000097f8    00000012     rf4463.obj (.text:rf4463_rx_packet)
+                  0000980a    00000012     rts430x_lc_ld_eabi.lib : strlen.c.obj (.text:strlen)
+                  0000981c    00000010                            : lsr32.asm.obj (.text:l_lsr)
+                  0000982c    00000010     main.obj (.text:main)
+                  0000983c    00000010     rf4463_spi.obj (.text:rf4463_spi_read)
+                  0000984c    00000010     rf4463_spi.obj (.text:rf4463_spi_write)
+                  0000985c    00000010     obdh.obj (.text:vConfigureTimerForRunTimeStats)
+                  0000986c    00000010     wdti.obj (.text:wdti_hold_counter)
+                  0000987c    00000010     wdti.obj (.text:wdti_reset_counter)
+                  0000988c    0000000e     rf4463.obj (.text:rf4463_wait_gpio1)
+                  0000989a    0000000e     heap_1.obj (.text:vPortFree)
+                  000098a8    0000000e     spi.obj (.text:wait_for_buffer_empty)
+                  000098b6    0000000e     spi.obj (.text:wait_for_data_sent)
+                  000098c4    0000000c     i2c.obj (.text:i2c_set_mode)
+                  000098d0    0000000c     i2c.obj (.text:i2c_set_slave)
+                  000098dc    0000000c     rf4463_spi.obj (.text:rf4463_spi_transfer)
+                  000098e8    0000000c     rf4463.obj (.text:rf4463_wait_nIRQ)
+                  000098f4    0000000c     msp_internal.obj (.text:set_hibernation_period_min)
+                  00009900    0000000a     fsp.obj (.text:fsp_init)
+                  0000990a    0000000a     msp_internal.obj (.text:get_hibernation_period_min)
+                  00009914    0000000a     mmc.obj (.text:mmc_setup)
+                  0000991e    0000000a     ngham.obj (.text:ngham_Init)
+                  00009928    0000000a     msp_internal.obj (.text:obdh_current_read)
+                  00009932    0000000a     msp_internal.obj (.text:obdh_temperature_read)
+                  0000993c    0000000a     msp_internal.obj (.text:read_reset_value)
+                  00009946    0000000a     msp_internal.obj (.text:read_time_counter)
+                  00009950    0000000a     msp_internal.obj (.text:read_time_state_changed)
+                  0000995a    0000000a     rts430x_lc_ld_eabi.lib : lsr16.asm.obj (.text)
+                  00009964    0000000a     payload_rush.obj (.text:rush_setup)
+                  0000996e    0000000a     obdh.obj (.text:vApplicationIdleHook)
+                  00009978    0000000a     obdh.obj (.text:vApplicationMallocFailedHook)
+                  00009982    0000000a     obdh.obj (.text:vApplicationStackOverflowHook)
+                  0000998c    00000008     msp_internal.obj (.text:obdh_voltage_read)
+                  00009994    00000008     msp_internal.obj (.text:read_reset_cause)
+                  0000999c    00000008     payload_rush_interface_task.obj (.text:rush_delay_ms)
+                  000099a4    00000008     list.obj (.text:vListInitialiseItem)
+                  000099ac    00000006     rts430x_lc_ld_eabi.lib : exit.c.obj (.text:abort)
+                  000099b2    00000006     flash.obj (.text:flash_read_long)
+                  000099b8    00000006     fsp.obj (.text:fsp_reset)
+                  000099be    00000006     rf4463.obj (.text:rf4463_power_up)
+                  000099c4    00000006     rf4463.obj (.text:rf4463_shutdown)
+                  000099ca    00000006     rf4463.obj (.text:rf4463_slave_disable)
+                  000099d0    00000006     rf4463.obj (.text:rf4463_slave_enable)
+                  000099d6    00000006     wdti.obj (.text:system_reboot)
+                  000099dc    00000006     tasks.obj (.text:vTaskMissedYield)
+                  000099e2    00000006     tasks.obj (.text:vTaskSuspendAll)
+                  000099e8    00000004     rts430x_lc_ld_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  000099ec    00000004     flash.obj (.text:flash_read_single)
+                  000099f0    00000004     platform.obj (.text:ngham_ActionGetNoiseFloor)
+                  000099f4    00000004     platform.obj (.text:ngham_ActionGetRSSI)
+                  000099f8    00000004     msp_internal.obj (.text:read_fault_flags)
+                  000099fc    00000002     rts430x_lc_ld_eabi.lib : startup.c.obj (.text:_system_post_cinit)
+                  000099fe    00000002     flash.obj (.text:flash_erase)
+                  00009a00    00000002     flash.obj (.text:flash_write_long)
+                  00009a02    00000002     flash.obj (.text:flash_write_single)
+                  00009a04    00000002     platform.obj (.text:ngham_ActionReceptionHalfway)
+                  00009a06    00000002     platform.obj (.text:ngham_ActionReceptionStarted)
+                  00009a08    00000002     platform.obj (.text:ngham_ActionSetPacketSize)
 
 $fill000   0    0000ff80    00000004     
                   0000ff80    00000004     --HOLE-- [fill = ffff]
@@ -266,357 +449,267 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_ld_eabi.lib : boot.c.obj (.reset)
 
-.const     0    0000803e    000004f6     
-                  0000803e    00000200     crc_ccitt.obj (.const:crc_ccitt_table)
-                  0000823e    0000016b     rf4463.obj (.const:.string:RF4463_CONFIGURATION_DATA)
-                  000083a9    00000001     --HOLE-- [fill = 0]
-                  000083aa    000000ff     ccsds_scrambler.obj (.const:.string:ccsds_poly)
-                  000084a9    00000001     --HOLE-- [fill = 0]
-                  000084aa    0000001c     ngham.obj (.const:NGH_SIZE_TAG)
-                  000084c6    00000010     obdh.obj (.const:.string)
-                  000084d6    00000009     communications_task.obj (.const:.string:$P$T0$1)
-                  000084df    00000001     --HOLE-- [fill = 0]
-                  000084e0    00000009     communications_task.obj (.const:.string:$P$T1$2)
-                  000084e9    00000001     --HOLE-- [fill = 0]
-                  000084ea    00000009     communications_task.obj (.const:.string:$P$T2$3)
-                  000084f3    00000001     --HOLE-- [fill = 0]
-                  000084f4    00000008     rf4463.obj (.const:.string:$P$T0$1)
-                  000084fc    00000008     communications_task.obj (.const:.string)
-                  00008504    00000007     ngham.obj (.const:.string:NGH_PAR_SIZE)
-                  0000850b    00000001     --HOLE-- [fill = 0]
-                  0000850c    00000007     ngham.obj (.const:.string:NGH_PL_PAR_SIZE)
-                  00008513    00000001     --HOLE-- [fill = 0]
-                  00008514    00000007     ngham.obj (.const:.string:NGH_PL_SIZE)
-                  0000851b    00000001     --HOLE-- [fill = 0]
-                  0000851c    00000007     ngham.obj (.const:.string:NGH_PL_SIZE_FULL)
-                  00008523    00000001     --HOLE-- [fill = 0]
-                  00008524    00000006     tasks.obj (.const:.string)
-                  0000852a    00000006     ngham.obj (.const)
-                  00008530    00000004     ngham.obj (.const:.string:NGH_SYNC)
+.const     0    00009a0a    00000624     
+                  00009a0a    00000200     crc_ccitt.obj (.const:crc_ccitt_table)
+                  00009c0a    0000016b     rf4463.obj (.const:.string:RF4463_CONFIGURATION_DATA)
+                  00009d75    00000001     --HOLE-- [fill = 0]
+                  00009d76    000000ff     ccsds_scrambler.obj (.const:.string:ccsds_poly)
+                  00009e75    00000001     --HOLE-- [fill = 0]
+                  00009e76    000000ca     store_data_task.obj (.const:$P$T0$1)
+                  00009f40    0000003e     obdh.obj (.const:.string)
+                  00009f7e    00000032     tasks.obj (.const:.string)
+                  00009fb0    0000001c     ngham.obj (.const:NGH_SIZE_TAG)
+                  00009fcc    0000000a     ttc_interface_task.obj (.const:.string)
+                  00009fd6    00000009     communications_task.obj (.const:.string:$P$T0$1)
+                  00009fdf    00000001     --HOLE-- [fill = 0]
+                  00009fe0    00000009     communications_task.obj (.const:.string:$P$T1$2)
+                  00009fe9    00000001     --HOLE-- [fill = 0]
+                  00009fea    00000009     communications_task.obj (.const:.string:$P$T2$3)
+                  00009ff3    00000001     --HOLE-- [fill = 0]
+                  00009ff4    00000008     rf4463.obj (.const:.string:$P$T0$1)
+                  00009ffc    00000008     communications_task.obj (.const:.string)
+                  0000a004    00000007     ngham.obj (.const:.string:NGH_PAR_SIZE)
+                  0000a00b    00000001     --HOLE-- [fill = 0]
+                  0000a00c    00000007     ngham.obj (.const:.string:NGH_PL_PAR_SIZE)
+                  0000a013    00000001     --HOLE-- [fill = 0]
+                  0000a014    00000007     ngham.obj (.const:.string:NGH_PL_SIZE)
+                  0000a01b    00000001     --HOLE-- [fill = 0]
+                  0000a01c    00000007     ngham.obj (.const:.string:NGH_PL_SIZE_FULL)
+                  0000a023    00000001     --HOLE-- [fill = 0]
+                  0000a024    00000006     ngham.obj (.const)
+                  0000a02a    00000004     ngham.obj (.const:.string:NGH_SYNC)
 
-.text      0    00010000    00003d02     
-                  00010000    0000028a     ngham.obj (.text:ngham_Encode)
-                  0001028a    00000242     store_data_task.obj (.text:get_packet)
-                  000104cc    000001ea     queue.obj (.text:xQueueGenericReceive)
-                  000106b6    000001d6     ngham.obj (.text:ngham_Decode)
-                  0001088c    000001b0     communications_task.obj (.text:send_requested_data)
-                  00010a3c    00000198     queue.obj (.text:xQueueGenericSend)
-                  00010bd4    00000170     obdh.obj (.text:create_tasks)
-                  00010d44    0000016a     communications_task.obj (.text:enable_rush)
-                  00010eae    00000162     communications_task.obj (.text:communications_task)
-                  00011010    0000014c     communications_task.obj (.text:enter_in_hibernation)
-                  0001115c    0000013e     communications_task.obj (.text:radioamateur_repeater)
-                  0001129a    00000124     rf4463.obj (.text:rf4463_tx_long_packet)
-                  000113be    0000011c     tasks.obj (.text:xTaskIncrementTick)
-                  000114da    000000fc     communications_task.obj (.text:send_reset_charge_command)
-                  000115d6    000000fa     tasks.obj (.text:prvInitialiseNewTask)
-                  000116d0    000000d8     tasks.obj (.text:xTaskResumeAll)
-                  000117a8    000000d6     tasks.obj (.text:vTaskSwitchContext)
-                  0001187e    000000ca     communications_task.obj (.text:answer_ping)
-                  00011948    000000b4     ngham.obj (.text:ngham_InitArrays)
-                  000119fc    000000b4     communications_task.obj (.text:verify_key)
-                  00011ab0    000000ae     tasks.obj (.text:vTaskDelayUntil)
-                  00011b5e    000000aa     queue.obj (.text:xQueueGenericReset)
-                  00011c08    000000aa     tasks.obj (.text:xTaskCheckForTimeOut)
-                  00011cb2    000000a6     portext.obj (.text)
-                  00011d58    000000a6     communications_task.obj (.text:send_periodic_data)
-                  00011dfe    000000a2     communications_task.obj (.text:update_last_telecommand_status)
-                  00011ea0    000000a0     queue.obj (.text:prvUnlockQueue)
-                  00011f40    0000009e     queue.obj (.text:prvCopyDataToQueue)
-                  00011fde    0000009c     tasks.obj (.text:prvAddNewTaskToReadyList)
-                  0001207a    0000009a     tasks.obj (.text:vTaskPriorityInherit)
-                  00012114    00000090     tasks.obj (.text:prvAddCurrentTaskToDelayedList)
-                  000121a4    00000090     tasks.obj (.text:xTaskPriorityDisinherit)
-                  00012234    0000008a     tasks.obj (.text:xTaskCreate)
-                  000122be    00000086     tasks.obj (.text:xTaskRemoveFromEventList)
-                  00012344    00000082     heap_1.obj (.text:pvPortMalloc)
-                  000123c6    0000007e     store_data_task.obj (.text:get_last_write_pointer)
-                  00012444    0000007e     mmc.obj (.text:mmcReadBlock)
-                  000124c2    0000007e     mmc.obj (.text:mmcWriteBlock)
-                  00012540    00000078     rts430x_lc_ld_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
-                  000125b8    00000076                            : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  0001262e    00000074     link.obj (.text:decode_request_data_telecommand)
-                  000126a2    00000074     link.obj (.text:decode_telecommand)
-                  00012716    00000070     mmc.obj (.text:mmcGoIdle)
-                  00012786    0000006a     communications_task.obj (.text:leave_hibernation)
-                  000127f0    00000068     communications_task.obj (.text:try_to_receive)
-                  00012858    00000066     tasks.obj (.text:prvCheckTasksWaitingTermination)
-                  000128be    00000062     store_data_task.obj (.text:mmc_write_sector)
-                  00012920    00000062     tasks.obj (.text:prvInitialiseTaskLists)
-                  00012982    0000005e     store_data_task.obj (.text:update_last_read_position)
-                  000129e0    0000005a     mmc.obj (.text:mmcCheckBusy)
-                  00012a3a    0000005a     rf4463.obj (.text:rf4463_set_config)
-                  00012a94    00000058     rf4463.obj (.text:rf4463_tx_packet)
-                  00012aec    00000054     list.obj (.text:vListInsert)
-                  00012b40    00000054     tasks.obj (.text:vTaskStartScheduler)
-                  00012b94    00000054     queue.obj (.text:xQueueGenericCreate)
-                  00012be8    00000052     platform.obj (.text:ngham_ActionHandlePacket)
-                  00012c3a    00000052     communications_task.obj (.text:send_data)
-                  00012c8c    00000050     link.obj (.text:calculate_read_position)
-                  00012cdc    00000050     mmc.obj (.text:mmcSendCmd)
-                  00012d2c    00000050     mmc.obj (.text:mmcSetBlockLength)
-                  00012d7c    00000050     rf4463.obj (.text:rf4463_set_properties)
-                  00012dcc    0000004e     mmc.obj (.text:mmcInit)
-                  00012e1a    0000004c     rf4463.obj (.text:rf4463_get_cmd)
-                  00012e66    0000004a     hal_SPI.obj (.text:spiSendFrame)
-                  00012eb0    00000048     store_data_task.obj (.text:get_last_read_pointer)
-                  00012ef8    00000046     store_data_task.obj (.text:mmc_read_sector)
-                  00012f3e    00000044     msp_internal.obj (.text:restore_time_counter)
-                  00012f82    00000044     obdh.obj (.text:setup_hardware)
-                  00012fc6    00000044     hal_SPI.obj (.text:spiReadFrame)
-                  0001300a    00000040     ngham_packets.obj (.text:ngham_TxPktGen)
-                  0001304a    00000040     msp_internal.obj (.text:update_reset_value)
-                  0001308a    0000003e     i2c.obj (.text:i2c_setup)
-                  000130c8    0000003e     rts430x_lc_ld_eabi.lib : asr32.asm.obj (.text:l_asr_const)
-                  00013106    0000003e                            : lsl32.asm.obj (.text:l_lsl_const)
-                  00013144    0000003e     msp_internal.obj (.text:read_current_state)
-                  00013182    0000003e     rf4463.obj (.text:rf4463_power_on_reset)
-                  000131c0    0000003c     rts430x_lc_ld_eabi.lib : memcpy.c.obj (.text:memcpy)
-                  000131fc    0000003c     ngham_packets.obj (.text:ngham_RxPktInit)
-                  00013238    0000003c     communications_task.obj (.text:request_antenna_mutex)
-                  00013274    0000003a     ngham.obj (.text:ngham_TagCheck)
-                  000132ae    0000003a     list.obj (.text:uxListRemove)
-                  000132e8    00000038     store_data_task.obj (.text:pack_module_data)
-                  00013320    00000038     rf4463.obj (.text:rf4463_check_cts)
-                  00013358    00000038     rf4463.obj (.text:rf4463_reg_config)
-                  00013390    00000036     rf4463.obj (.text:rf4463_check_device)
-                  000133c6    00000036     msp_internal.obj (.text:update_operation_mode)
-                  000133fc    00000034     rts430x_lc_ld_eabi.lib : memcmp.c.obj (.text:memcmp)
-                  00013430    00000034     queue.obj (.text:prvCopyDataFromQueue)
-                  00013464    00000034     rf4463.obj (.text:rf4463_enter_rx_mode)
-                  00013498    00000032     platform.obj (.text:ngham_ActionSendData)
-                  000134ca    00000032     rf4463.obj (.text:rf4463_set_tx_power)
-                  000134fc    00000030     rf4463.obj (.text:rf4463_read_rx_fifo)
-                  0001352c    00000030     rf4463.obj (.text:rf4463_set_cmd)
-                  0001355c    00000030     tasks.obj (.text:vTaskPlaceOnEventList)
-                  0001358c    0000002e     i2c.obj (.text:i2c_set_clock)
-                  000135ba    0000002e     queue.obj (.text:prvIsQueueFull)
-                  000135e8    0000002e     tasks.obj (.text:prvResetNextTaskUnblockTime)
-                  00013616    0000002c     crc_ccitt.obj (.text:ngham_CRC_CCITT)
-                  00013642    0000002c     queue.obj (.text:prvIsQueueEmpty)
-                  0001366e    0000002c     list.obj (.text:vListInitialise)
-                  0001369a    0000002a     rf4463.obj (.text:rf4463_rx_init)
-                  000136c4    0000002a     rf4463.obj (.text:rf4463_wait_packet_sent)
-                  000136ee    00000028     i2c.obj (.text:i2c_pin_reset)
-                  00013716    00000028     queue.obj (.text:prvInitialiseMutex)
-                  0001373e    00000028     rf4463.obj (.text:rf4463_enter_tx_mode)
-                  00013766    00000028     rf4463.obj (.text:rf4463_set_rx_interrupt)
-                  0001378e    00000028     rf4463.obj (.text:rf4463_write_tx_fifo)
-                  000137b6    00000028     tasks.obj (.text:xTaskGetTickCount)
-                  000137de    00000026     rf4463.obj (.text:rf4463_clear_interrupts)
-                  00013804    00000026     spi.obj (.text:spi_rx_multiple)
-                  0001382a    00000026     obdh.obj (.text:vApplicationSetupTimerInterrupt)
-                  00013850    00000026     list.obj (.text:vListInsertEnd)
-                  00013876    00000024     rts430x_lc_ld_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init)
-                  0001389a    00000024     mmc.obj (.text:mmcGetResponse)
-                  000138be    00000024     port.obj (.text:pxPortInitialiseStack)
-                  000138e2    00000024     rf4463.obj (.text:rf4463_init)
-                  00013906    00000024     spi.obj (.text:spi_setup)
-                  0001392a    00000022     mmc.obj (.text:mmcGetXXResponse)
-                  0001394c    00000022     spi.obj (.text:spi_clock_setup)
-                  0001396e    00000022     spi.obj (.text:spi_tx_multiple)
-                  00013990    00000022     tasks.obj (.text:vTaskSetTimeOutState)
-                  000139b2    00000022     wdti.obj (.text:wdti_setup)
-                  000139d4    00000020     rts430x_lc_ld_eabi.lib : memset.c.obj (.text:memset)
-                  000139f4    00000020     queue.obj (.text:prvInitialiseNewQueue)
-                  00013a14    0000001c     hal_SPI.obj (.text:halSPISetup)
-                  00013a30    0000001c     tasks.obj (.text:pvTaskIncrementMutexHeldCount)
-                  00013a4c    0000001c     rf4463.obj (.text:rf4463_gpio_init)
-                  00013a68    0000001a     obdh.obj (.text:gpio_setup)
-                  00013a82    0000001a     spi.obj (.text:spi_tx)
-                  00013a9c    00000018     rf4463.obj (.text:rf4463_fifo_reset)
-                  00013ab4    00000018     rts430x_lc_ld_eabi.lib : mult16_f5hw.asm.obj (.text)
-                  00013acc    00000018     tasks.obj (.text:xTaskGetSchedulerState)
-                  00013ae4    00000016     rts430x_lc_ld_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  00013afa    00000016     tasks.obj (.text:prvDeleteTCB)
-                  00013b10    00000016     tasks.obj (.text:prvIdleTask)
-                  00013b26    00000016     rf4463.obj (.text:rf4463_enter_standby_mode)
-                  00013b3c    00000016     queue.obj (.text:xQueueCreateMutex)
-                  00013b52    00000014     hal_SPI.obj (.text:spiSendByte)
-                  00013b66    00000014     wdti.obj (.text:wdti_release_counter)
-                  00013b7a    00000012     fec.obj (.text:encode_rs_char)
-                  00013b8c    00000012     rf4463.obj (.text:rf4463_rx_packet)
-                  00013b9e    00000010     rts430x_lc_ld_eabi.lib : lsr32.asm.obj (.text:l_lsr)
-                  00013bae    00000010     main.obj (.text:main)
-                  00013bbe    00000010     rf4463_spi.obj (.text:rf4463_spi_read)
-                  00013bce    00000010     rf4463_spi.obj (.text:rf4463_spi_write)
-                  00013bde    00000010     wdti.obj (.text:wdti_hold_counter)
-                  00013bee    0000000e     rf4463.obj (.text:rf4463_wait_gpio1)
-                  00013bfc    0000000e     heap_1.obj (.text:vPortFree)
-                  00013c0a    0000000e     spi.obj (.text:wait_for_buffer_empty)
-                  00013c18    0000000e     spi.obj (.text:wait_for_data_sent)
-                  00013c26    0000000c     i2c.obj (.text:i2c_set_mode)
-                  00013c32    0000000c     i2c.obj (.text:i2c_set_slave)
-                  00013c3e    0000000c     rf4463_spi.obj (.text:rf4463_spi_transfer)
-                  00013c4a    0000000c     rf4463.obj (.text:rf4463_wait_nIRQ)
-                  00013c56    0000000c     msp_internal.obj (.text:set_hibernation_period_min)
-                  00013c62    0000000a     ngham.obj (.text:ngham_Init)
-                  00013c6c    0000000a     msp_internal.obj (.text:read_reset_value)
-                  00013c76    0000000a     msp_internal.obj (.text:read_time_counter)
-                  00013c80    0000000a     obdh.obj (.text:vApplicationIdleHook)
-                  00013c8a    0000000a     obdh.obj (.text:vApplicationMallocFailedHook)
-                  00013c94    0000000a     obdh.obj (.text:vApplicationStackOverflowHook)
-                  00013c9e    00000008     msp_internal.obj (.text:read_reset_cause)
-                  00013ca6    00000008     list.obj (.text:vListInitialiseItem)
-                  00013cae    00000006     rts430x_lc_ld_eabi.lib : exit.c.obj (.text:abort)
-                  00013cb4    00000006     flash.obj (.text:flash_read_long)
-                  00013cba    00000006     rf4463.obj (.text:rf4463_power_up)
-                  00013cc0    00000006     rf4463.obj (.text:rf4463_shutdown)
-                  00013cc6    00000006     rf4463.obj (.text:rf4463_slave_disable)
-                  00013ccc    00000006     rf4463.obj (.text:rf4463_slave_enable)
-                  00013cd2    00000006     wdti.obj (.text:system_reboot)
-                  00013cd8    00000006     tasks.obj (.text:vTaskMissedYield)
-                  00013cde    00000006     tasks.obj (.text:vTaskSuspendAll)
-                  00013ce4    00000004     rts430x_lc_ld_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
-                  00013ce8    00000004     flash.obj (.text:flash_read_single)
-                  00013cec    00000004     platform.obj (.text:ngham_ActionGetNoiseFloor)
-                  00013cf0    00000004     platform.obj (.text:ngham_ActionGetRSSI)
-                  00013cf4    00000002     rts430x_lc_ld_eabi.lib : startup.c.obj (.text:_system_post_cinit)
-                  00013cf6    00000002     flash.obj (.text:flash_erase)
-                  00013cf8    00000002     flash.obj (.text:flash_write_long)
-                  00013cfa    00000002     flash.obj (.text:flash_write_single)
-                  00013cfc    00000002     platform.obj (.text:ngham_ActionReceptionHalfway)
-                  00013cfe    00000002     platform.obj (.text:ngham_ActionReceptionStarted)
-                  00013d00    00000002     platform.obj (.text:ngham_ActionSetPacketSize)
+.text.2    0    00010000    00004000     
+                  00010000    000002b8     housekeeping_task.obj (.text:housekeeping_task)
+                  000102b8    0000028a     ngham.obj (.text:ngham_Encode)
+                  00010542    00000242     store_data_task.obj (.text:get_packet)
+                  00010784    0000022e     payload_rush_interface_task.obj (.text:payload_rush_interface_task)
+                  000109b2    00000210     obdh.obj (.text:create_tasks)
+                  00010bc2    000001ec     store_data_task.obj (.text:read_and_pack_data)
+                  00010dae    000001ea     queue.obj (.text:xQueueGenericReceive)
+                  00010f98    000001d6     ngham.obj (.text:ngham_Decode)
+                  0001116e    000001b0     communications_task.obj (.text:send_requested_data)
+                  0001131e    000001aa     adc.obj (.text:adc_read)
+                  000114c8    00000198     queue.obj (.text:xQueueGenericSend)
+                  00011660    0000016a     communications_task.obj (.text:enable_rush)
+                  000117ca    00000168     communications_task.obj (.text:communications_task)
+                  00011932    0000015e     store_data_task.obj (.text:store_data_task)
+                  00011a90    0000014c     communications_task.obj (.text:enter_in_hibernation)
+                  00011bdc    00000146     ttc.obj (.text:ttc_copy_data)
+                  00011d22    0000013e     communications_task.obj (.text:radioamateur_repeater)
+                  00011e60    0000012e     tasks.obj (.text:vTaskSwitchContext)
+                  00011f8e    00000124     mmc.obj (.text:mmcReadCardSize)
+                  000120b2    00000124     rf4463.obj (.text:rf4463_tx_long_packet)
+                  000121d6    0000011c     store_data_task.obj (.text:update_last_write_position)
+                  000122f2    0000011c     tasks.obj (.text:xTaskIncrementTick)
+                  0001240e    00000116     ttc_interface_task.obj (.text:ttc_interface_task)
+                  00012524    00000108     fsp.obj (.text:fsp_decode)
+                  0001262c    00000100     tasks.obj (.text:prvInitialiseNewTask)
+                  0001272c    000000fc     communications_task.obj (.text:send_reset_charge_command)
+                  00012828    000000d8     tasks.obj (.text:xTaskResumeAll)
+                  00012900    000000ca     communications_task.obj (.text:answer_ping)
+                  000129ca    000000ba     tasks.obj (.text:vTaskSuspend)
+                  00012a84    000000b4     ngham.obj (.text:ngham_InitArrays)
+                  00012b38    000000b4     communications_task.obj (.text:verify_key)
+                  00012bec    000000ae     tasks.obj (.text:vTaskDelayUntil)
+                  00012c9a    000000aa     queue.obj (.text:xQueueGenericReset)
+                  00012d44    000000aa     tasks.obj (.text:xTaskCheckForTimeOut)
+                  00012dee    000000a6     portext.obj (.text)
+                  00012e94    000000a6     communications_task.obj (.text:send_periodic_data)
+                  00012f3a    000000a2     tasks.obj (.text:prvAddNewTaskToReadyList)
+                  00012fdc    000000a2     communications_task.obj (.text:update_last_telecommand_status)
+                  0001307e    000000a0     queue.obj (.text:prvUnlockQueue)
+                  0001311e    0000009e     queue.obj (.text:prvCopyDataToQueue)
+                  000131bc    0000009c     fsp.obj (.text:fsp_encode)
+                  00013258    0000009c     tasks.obj (.text:prvSearchForNameWithinSingleList)
+                  000132f4    0000009a     tasks.obj (.text:vTaskPriorityInherit)
+                  0001338e    00000092     payload_rush_interface_task.obj (.text:rush_experiment_log)
+                  00013420    00000090     tasks.obj (.text:prvAddCurrentTaskToDelayedList)
+                  000134b0    00000090     tasks.obj (.text:xTaskPriorityDisinherit)
+                  00013540    0000008e     i2c.obj (.text:i2c_receive_burst)
+                  000135ce    0000008c     tasks.obj (.text:vTaskResume)
+                  0001365a    0000008a     tasks.obj (.text:xTaskCreate)
+                  000136e4    00000088     tasks.obj (.text:xTaskGetHandle)
+                  0001376c    00000086     ttc.obj (.text:send_command_packet)
+                  000137f2    00000086     tasks.obj (.text:xTaskRemoveFromEventList)
+                  00013878    00000082     heap_1.obj (.text:pvPortMalloc)
+                  000138fa    0000007e     store_data_task.obj (.text:get_last_write_pointer)
+                  00013978    0000007e     mmc.obj (.text:mmcReadBlock)
+                  000139f6    0000007e     mmc.obj (.text:mmcWriteBlock)
+                  00013a74    0000007e     ttc.obj (.text:receive_packet)
+                  00013af2    00000078     rts430x_lc_ld_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
+                  00013b6a    00000076                            : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  00013be0    00000074     link.obj (.text:decode_request_data_telecommand)
+                  00013c54    00000074     link.obj (.text:decode_telecommand)
+                  00013cc8    00000070     i2c.obj (.text:i2c_send_burst)
+                  00013d38    00000070     mmc.obj (.text:mmcGoIdle)
+                  00013da8    0000006a     communications_task.obj (.text:leave_hibernation)
+                  00013e12    00000068     payload_rush_interface_task.obj (.text:rush_experiment_perform)
+                  00013e7a    00000068     payload_rush.obj (.text:rush_read)
+                  00013ee2    00000068     communications_task.obj (.text:try_to_receive)
+                  00013f4a    00000066     tasks.obj (.text:prvCheckTasksWaitingTermination)
+                  00013fb0    00000050     link.obj (.text:calculate_read_position)
 
 MODULE SUMMARY
 
-       Module                       code    ro data   rw data
-       ------                       ----    -------   -------
+       Module                            code    ro data   rw data
+       ------                            ----    -------   -------
     ./
-       main.obj                     16      0         14626  
-    +--+----------------------------+-------+---------+---------+
-       Total:                       16      0         14626  
-                                                             
+       main.obj                          16      0         14630  
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            16      0         14630  
+                                                                  
     ./FreeRTOS_Source/
-       tasks.obj                    2738    6         402    
-       queue.obj                    1706    0         0      
-       list.obj                     232     0         0      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       4676    6         402    
-                                                             
+       tasks.obj                         3562    50        410    
+       queue.obj                         1722    0         0      
+       list.obj                          232     0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            5516    50        410    
+                                                                  
     ./FreeRTOS_Source/portable/CCS/MSP430X/
-       portext.obj                  166     0         0      
-       port.obj                     52      2         2      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       218     2         2      
-                                                             
+       portext.obj                       166     0         0      
+       port.obj                          52      2         2      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            218     2         2      
+                                                                  
     ./FreeRTOS_Source/portable/MemMang/
-       heap_1.obj                   144     0         8      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       144     0         8      
-                                                             
+       heap_1.obj                        144     0         8      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            144     0         8      
+                                                                  
     ./driver/
-       spi.obj                      196     0         0      
-       i2c.obj                      172     0         0      
-       wdti.obj                     86      2         0      
-       flash.obj                    16      0         0      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       470     2         0      
-                                                             
+       adc.obj                           426     0         0      
+       i2c.obj                           426     0         0      
+       spi.obj                           196     0         0      
+       wdti.obj                          102     2         0      
+       flash.obj                         16      0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            1166    2         0      
+                                                                  
     ./include/
-       obdh.obj                     530     16        4      
-       msp_internal.obj             288     0         4      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       818     16        8      
-                                                             
+       obdh.obj                          706     62        24     
+       msp_internal.obj                  412     0         4      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            1118    62        28     
+                                                                  
+    ./interface/
+       ttc.obj                           678     0         0      
+       payload_rush.obj                  304     0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            982     0         0      
+                                                                  
     ./libs/ngham/
-       ngham.obj                    1368    66        190    
-       crc_ccitt.obj                44      512       0      
-       ccsds_scrambler.obj          0       255       0      
-       ngham_packets.obj            124     0         0      
-       fec.obj                      18      0         0      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       1554    833       190    
-                                                             
+       ngham.obj                         1368    66        190    
+       crc_ccitt.obj                     44      512       0      
+       ccsds_scrambler.obj               0       255       0      
+       ngham_packets.obj                 124     0         0      
+       fec.obj                           18      0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            1554    833       190    
+                                                                  
     ./libs/ngham/platform/
-       platform.obj                 146     0         523    
-    +--+----------------------------+-------+---------+---------+
-       Total:                       146     0         523    
-                                                             
+       platform.obj                      146     0         523    
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            146     0         523    
+                                                                  
     ./rf4463/
-       rf4463.obj                   1472    371       0      
-       rf4463_spi.obj               44      0         0      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       1516    371       0      
-                                                             
+       rf4463.obj                        1472    371       0      
+       rf4463_spi.obj                    44      0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            1516    371       0      
+                                                                  
     ./src/
-       communications_task.obj      3112    35        0      
-       store_data_task.obj          1094    0         4      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       4206    35        4      
-                                                             
+       communications_task.obj           3118    35        0      
+       store_data_task.obj               2220    202       12     
+       payload_rush_interface_task.obj   866     0         40     
+       housekeeping_task.obj             696     0         0      
+       ttc_interface_task.obj            404     10        0      
+       wdt_task.obj                      84      0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            7388    247       52     
+                                                                  
     ./util/
-       link.obj                     312     0         0      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       312     0         0      
-                                                             
+       link.obj                          312     0         0      
+       sspi.obj                          186     0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            498     0         0      
+                                                                  
     ./util/MMC_lib/
-       mmc.obj                      762     0         0      
-       hal_SPI.obj                  190     0         0      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       952     0         0      
-                                                             
+       mmc.obj                           1064    0         0      
+       hal_SPI.obj                       190     0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            1254    0         0      
+                                                                  
+    ./util/fsp/
+       fsp.obj                           616     0         2      
+       crc16.obj                         52      0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            668     0         2      
+                                                                  
     /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/lib/rts430x_lc_ld_eabi.lib
-       autoinit.c.obj               120     0         0      
-       copy_decompress_lzss.c.obj   118     0         0      
-       asr32.asm.obj                62      0         0      
-       lsl32.asm.obj                62      0         0      
-       memcpy.c.obj                 60      0         0      
-       memcmp.c.obj                 52      0         0      
-       copy_zero_init.c.obj         36      0         0      
-       memset.c.obj                 32      0         0      
-       boot.c.obj                   28      2         0      
-       mult16_f5hw.asm.obj          24      0         0      
-       copy_decompress_none.c.obj   22      0         0      
-       lsr32.asm.obj                16      0         0      
-       isr_trap.asm.obj             8       0         0      
-       exit.c.obj                   6       0         0      
-       pre_init.c.obj               4       0         0      
-       int30.asm.obj                0       2         0      
-       int31.asm.obj                0       2         0      
-       int32.asm.obj                0       2         0      
-       int33.asm.obj                0       2         0      
-       int34.asm.obj                0       2         0      
-       int35.asm.obj                0       2         0      
-       int36.asm.obj                0       2         0      
-       int37.asm.obj                0       2         0      
-       int38.asm.obj                0       2         0      
-       int39.asm.obj                0       2         0      
-       int40.asm.obj                0       2         0      
-       int41.asm.obj                0       2         0      
-       int42.asm.obj                0       2         0      
-       int43.asm.obj                0       2         0      
-       int44.asm.obj                0       2         0      
-       int46.asm.obj                0       2         0      
-       int47.asm.obj                0       2         0      
-       int48.asm.obj                0       2         0      
-       int50.asm.obj                0       2         0      
-       int51.asm.obj                0       2         0      
-       int52.asm.obj                0       2         0      
-       int53.asm.obj                0       2         0      
-       int54.asm.obj                0       2         0      
-       startup.c.obj                2       0         0      
-    +--+----------------------------+-------+---------+---------+
-       Total:                       652     48        0      
-                                                             
-       Heap:                        0       0         160    
-       Stack:                       0       0         160    
-       Linker Generated:            0       44        0      
-    +--+----------------------------+-------+---------+---------+
-       Grand Total:                 15680   1357      16083  
+       autoinit.c.obj                    120     0         0      
+       copy_decompress_lzss.c.obj        118     0         0      
+       div32u.asm.obj                    88      0         0      
+       lsr32.asm.obj                     78      0         0      
+       asr32.asm.obj                     62      0         0      
+       lsl32.asm.obj                     62      0         0      
+       memcpy.c.obj                      60      0         0      
+       memcmp.c.obj                      52      0         0      
+       copy_zero_init.c.obj              36      0         0      
+       mult32_f5hw.asm.obj               36      0         0      
+       memset.c.obj                      32      0         0      
+       boot.c.obj                        28      2         0      
+       mult16_f5hw.asm.obj               24      0         0      
+       copy_decompress_none.c.obj        22      0         0      
+       strlen.c.obj                      18      0         0      
+       lsr16.asm.obj                     10      0         0      
+       isr_trap.asm.obj                  8       0         0      
+       exit.c.obj                        6       0         0      
+       pre_init.c.obj                    4       0         0      
+       int30.asm.obj                     0       2         0      
+       int31.asm.obj                     0       2         0      
+       int32.asm.obj                     0       2         0      
+       int33.asm.obj                     0       2         0      
+       int34.asm.obj                     0       2         0      
+       int35.asm.obj                     0       2         0      
+       int36.asm.obj                     0       2         0      
+       int37.asm.obj                     0       2         0      
+       int38.asm.obj                     0       2         0      
+       int39.asm.obj                     0       2         0      
+       int40.asm.obj                     0       2         0      
+       int41.asm.obj                     0       2         0      
+       int42.asm.obj                     0       2         0      
+       int43.asm.obj                     0       2         0      
+       int44.asm.obj                     0       2         0      
+       int46.asm.obj                     0       2         0      
+       int47.asm.obj                     0       2         0      
+       int48.asm.obj                     0       2         0      
+       int50.asm.obj                     0       2         0      
+       int51.asm.obj                     0       2         0      
+       int52.asm.obj                     0       2         0      
+       int53.asm.obj                     0       2         0      
+       int54.asm.obj                     0       2         0      
+       startup.c.obj                     2       0         0      
+    +--+---------------------------------+-------+---------+---------+
+       Total:                            866     48        0      
+                                                                  
+       Heap:                             0       0         160    
+       Stack:                            0       0         160    
+       Linker Generated:                 0       45        0      
+    +--+---------------------------------+-------+---------+---------+
+       Grand Total:                      23050   1660      16165  
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 00008550 records: 2, size/record: 8, table size: 16
-	.data: load addr=00008540, load size=0000000a bytes, run addr=00002164, run size=00000030 bytes, compression=lzss
-	.bss: load addr=0000854a, load size=00000006 bytes, run addr=00001c00, run size=00000563 bytes, compression=zero_init
+__TI_cinit_table @ 0000a04c records: 2, size/record: 8, table size: 16
+	.data: load addr=0000a03a, load size=0000000b bytes, run addr=000021a4, run size=00000041 bytes, compression=lzss
+	.bss: load addr=0000a046, load size=00000006 bytes, run addr=00001c00, run size=000005a4 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 00008534 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 0000a02e records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_lzss
 	index: 2, handler: __TI_decompress_none
@@ -883,7 +976,7 @@ address   name
 000009ce  AESAXIN_L                              
 000004be  BCD2BIN                                
 000004bc  BIN2BCD                                
-00013cae  C$$EXIT                                
+000099ac  C$$EXIT                                
 0000043e  CAPTIO0CTL                             
 0000043f  CAPTIO0CTL_H                           
 0000043e  CAPTIO0CTL_L                           
@@ -1043,14 +1136,14 @@ address   name
 000004c2  MPYS_L                                 
 000004c1  MPY_H                                  
 000004c0  MPY_L                                  
-00008504  NGH_PAR_SIZE                           
-0000850c  NGH_PL_PAR_SIZE                        
-00008514  NGH_PL_SIZE                            
-0000851c  NGH_PL_SIZE_FULL                       
-0000852a  NGH_PREAMBLE                           
-0000852b  NGH_PREAMBLE_FOUR_LEVEL                
-000084aa  NGH_SIZE_TAG                           
-00008530  NGH_SYNC                               
+0000a004  NGH_PAR_SIZE                           
+0000a00c  NGH_PL_PAR_SIZE                        
+0000a014  NGH_PL_SIZE                            
+0000a01c  NGH_PL_SIZE_FULL                       
+0000a024  NGH_PREAMBLE                           
+0000a025  NGH_PREAMBLE_FOUR_LEVEL                
+00009fb0  NGH_SIZE_TAG                           
+0000a02a  NGH_SYNC                               
 000004c8  OP2                                    
 000004e2  OP2H                                   
 000004e3  OP2H_H                                 
@@ -1175,7 +1268,7 @@ address   name
 000004ca  RESLO                                  
 000004cb  RESLO_H                                
 000004ca  RESLO_L                                
-0000823e  RF4463_CONFIGURATION_DATA              
+00009c0a  RF4463_CONFIGURATION_DATA              
 000004ba  RTCADOWDAY                             
 000004bb  RTCADOWDAY_H                           
 000004ba  RTCADOWDAY_L                           
@@ -1419,14 +1512,14 @@ address   name
 00002400  __STACK_END                            
 000000a0  __STACK_SIZE                           
 000000a0  __SYSMEM_SIZE                          
-00008550  __TI_CINIT_Base                        
-00008560  __TI_CINIT_Limit                       
-00008534  __TI_Handler_Table_Base                
-00008540  __TI_Handler_Table_Limit               
+0000a04c  __TI_CINIT_Base                        
+0000a05c  __TI_CINIT_Limit                       
+0000a02e  __TI_Handler_Table_Base                
+0000a03a  __TI_Handler_Table_Limit               
 00008036  __TI_ISR_TRAP                          
-00012540  __TI_auto_init_nobinit_nopinit_hold_wdt
-000125b8  __TI_decompress_lzss                   
-00013ae4  __TI_decompress_none                   
+00013af2  __TI_auto_init_nobinit_nopinit_hold_wdt
+00013b6a  __TI_decompress_lzss                   
+00009766  __TI_decompress_none                   
 0000ffcc  __TI_int30                             
 0000ffce  __TI_int31                             
 0000ffd0  __TI_int32                             
@@ -1455,244 +1548,322 @@ address   name
 ffffffff  __TI_pprof_out_hndl                    
 ffffffff  __TI_prof_data_size                    
 ffffffff  __TI_prof_data_start                   
-00013876  __TI_zero_init                         
+0000949c  __TI_zero_init                         
 ffffffff  __c_args__                             
-00013ab4  __mspabi_mpyi_f5hw                     
-0001313e  __mspabi_slll_1                        
-0001311a  __mspabi_slll_10                       
-00013116  __mspabi_slll_11                       
-00013112  __mspabi_slll_12                       
-0001310e  __mspabi_slll_13                       
-0001310a  __mspabi_slll_14                       
-00013106  __mspabi_slll_15                       
-0001313a  __mspabi_slll_2                        
-00013136  __mspabi_slll_3                        
-00013132  __mspabi_slll_4                        
-0001312e  __mspabi_slll_5                        
-0001312a  __mspabi_slll_6                        
-00013126  __mspabi_slll_7                        
-00013122  __mspabi_slll_8                        
-0001311e  __mspabi_slll_9                        
-00013100  __mspabi_sral_1                        
-000130dc  __mspabi_sral_10                       
-000130d8  __mspabi_sral_11                       
-000130d4  __mspabi_sral_12                       
-000130d0  __mspabi_sral_13                       
-000130cc  __mspabi_sral_14                       
-000130c8  __mspabi_sral_15                       
-000130fc  __mspabi_sral_2                        
-000130f8  __mspabi_sral_3                        
-000130f4  __mspabi_sral_4                        
-000130f0  __mspabi_sral_5                        
-000130ec  __mspabi_sral_6                        
-000130e8  __mspabi_sral_7                        
-000130e4  __mspabi_sral_8                        
-000130e0  __mspabi_sral_9                        
-00013b9e  __mspabi_srll                          
+00008386  __mspabi_divul                         
+0000971e  __mspabi_mpyi_f5hw                     
+0000952c  __mspabi_mpyl_f5hw                     
+00008386  __mspabi_remul                         
+00008ba2  __mspabi_slll_1                        
+00008b7e  __mspabi_slll_10                       
+00008b7a  __mspabi_slll_11                       
+00008b76  __mspabi_slll_12                       
+00008b72  __mspabi_slll_13                       
+00008b6e  __mspabi_slll_14                       
+00008b6a  __mspabi_slll_15                       
+00008b9e  __mspabi_slll_2                        
+00008b9a  __mspabi_slll_3                        
+00008b96  __mspabi_slll_4                        
+00008b92  __mspabi_slll_5                        
+00008b8e  __mspabi_slll_6                        
+00008b8a  __mspabi_slll_7                        
+00008b86  __mspabi_slll_8                        
+00008b82  __mspabi_slll_9                        
+00008b64  __mspabi_sral_1                        
+00008b40  __mspabi_sral_10                       
+00008b3c  __mspabi_sral_11                       
+00008b38  __mspabi_sral_12                       
+00008b34  __mspabi_sral_13                       
+00008b30  __mspabi_sral_14                       
+00008b2c  __mspabi_sral_15                       
+00008b60  __mspabi_sral_2                        
+00008b5c  __mspabi_sral_3                        
+00008b58  __mspabi_sral_4                        
+00008b54  __mspabi_sral_5                        
+00008b50  __mspabi_sral_6                        
+00008b4c  __mspabi_sral_7                        
+00008b48  __mspabi_sral_8                        
+00008b44  __mspabi_sral_9                        
+0000995a  __mspabi_srli                          
+0000981c  __mspabi_srll                          
+00008be0  __mspabi_srll_1                        
+00008bbc  __mspabi_srll_10                       
+00008bb8  __mspabi_srll_11                       
+00008bb4  __mspabi_srll_12                       
+00008bb0  __mspabi_srll_13                       
+00008bac  __mspabi_srll_14                       
+00008ba8  __mspabi_srll_15                       
+00008bdc  __mspabi_srll_2                        
+00008bd8  __mspabi_srll_3                        
+00008bd4  __mspabi_srll_4                        
+00008bd0  __mspabi_srll_5                        
+00008bcc  __mspabi_srll_6                        
+00008bc8  __mspabi_srll_7                        
+00008bc4  __mspabi_srll_8                        
+00008bc0  __mspabi_srll_9                        
 00008000  _c_int00_noargs                        
 0000fffe  _reset_vector                          
 00002360  _stack                                 
 00007c00  _sys_memory                            
-00013cf4  _system_post_cinit                     
-00013ce4  _system_pre_init                       
-00013cae  abort                                  
-0001187e  answer_ping                            
-00012c8c  calculate_read_position                
-000083aa  ccsds_poly                             
-00002106  command_to_payload_rush_queue          
-00010eae  communications_task                    
-0000803e  crc_ccitt_table                        
-00010bd4  create_tasks                           
-0001262e  decode_request_data_telecommand        
-000126a2  decode_telecommand                     
-00002162  decoder_state                          
-00010d44  enable_rush                            
-00013b7a  encode_rs_char                         
-00011010  enter_in_hibernation                   
-0000210a  eps_charge_queue                       
-0000210e  eps_queue                              
-00013cf6  flash_erase                            
-00013cb4  flash_read_long                        
-00013ce8  flash_read_single                      
-00002112  flash_semaphore                        
-00013cf8  flash_write_long                       
-00013cfa  flash_write_single                     
+000099fc  _system_post_cinit                     
+000099e8  _system_pre_init                       
+000099ac  abort                                  
+0001131e  adc_read                               
+00012900  answer_ping                            
+00013fb0  calculate_read_position                
+0000213a  card_size                              
+00009d76  ccsds_poly                             
+0000213e  command_to_payload_rush_queue          
+000117ca  communications_task                    
+00008ed4  crc16_CCITT                            
+00009a0a  crc_ccitt_table                        
+000109b2  create_tasks                           
+00002142  current_data_address                   
+00013be0  decode_request_data_telecommand        
+00013c54  decode_telecommand                     
+000021a2  decoder_state                          
+00011660  enable_rush                            
+000097e6  encode_rs_char                         
+00011a90  enter_in_hibernation                   
+00002146  eps_charge_queue                       
+0000214a  eps_queue                              
+000099fe  flash_erase                            
+000099b2  flash_read_long                        
+000099ec  flash_read_single                      
+0000214e  flash_semaphore                        
+00009a00  flash_write_long                       
+00009a02  flash_write_single                     
 00004400  fram_ipe_end                           
 00004400  fram_ipe_start                         
 00008000  fram_rx_start                          
-00002116  fsp_semaphore                          
-00012eb0  get_last_read_pointer                  
-000123c6  get_last_write_pointer                 
-0001028a  get_packet                             
-00013a68  gpio_setup                             
-00013a14  halSPISetup                            
-0000211a  i2c0_semaphore                         
-000136ee  i2c_pin_reset                          
-0001358c  i2c_set_clock                          
-00013c26  i2c_set_mode                           
-00013c32  i2c_set_slave                          
-0001308a  i2c_setup                              
-0000211e  imu_queue                              
-00002122  last_read_position                     
-00012786  leave_hibernation                      
-00013bae  main                                   
-00002126  main_radio_queue                       
-000133fc  memcmp                                 
-000131c0  memcpy                                 
-000139d4  memset                                 
-0000218e  minutes_counter                        
-000129e0  mmcCheckBusy                           
-0001389a  mmcGetResponse                         
-0001392a  mmcGetXXResponse                       
-00012716  mmcGoIdle                              
-00012dcc  mmcInit                                
-00012444  mmcReadBlock                           
-00012cdc  mmcSendCmd                             
-00012d2c  mmcSetBlockLength                      
-000124c2  mmcWriteBlock                          
-00012ef8  mmc_read_sector                        
-000128be  mmc_write_sector                       
-00013cec  ngham_ActionGetNoiseFloor              
-00013cf0  ngham_ActionGetRSSI                    
-00012be8  ngham_ActionHandlePacket               
-00013cfc  ngham_ActionReceptionHalfway           
-00013cfe  ngham_ActionReceptionStarted           
-00013498  ngham_ActionSendData                   
-00013d00  ngham_ActionSetPacketSize              
-00013616  ngham_CRC_CCITT                        
-000106b6  ngham_Decode                           
-00010000  ngham_Encode                           
-00013c62  ngham_Init                             
-00011948  ngham_InitArrays                       
-000131fc  ngham_RxPktInit                        
-0001300a  ngham_TxPktGen                         
-0000212a  obdh_misc_queue                        
-0000212e  obdh_status_queue                      
-00002132  obdh_uptime_queue                      
-000132e8  pack_module_data                       
-00002136  payload_brave_queue                    
-0000213a  payload_rush_queue                     
-00012344  pvPortMalloc                           
-00013a30  pvTaskIncrementMutexHeldCount          
-00002164  pxCurrentTCB                           
-000138be  pxPortInitialiseStack                  
-0001115c  radioamateur_repeater                  
-00013144  read_current_state                     
-00013c9e  read_reset_cause                       
-00013c6c  read_reset_value                       
-00013c76  read_time_counter                      
-00013238  request_antenna_mutex                  
-00012f3e  restore_time_counter                   
-00013320  rf4463_check_cts                       
-00013390  rf4463_check_device                    
-000137de  rf4463_clear_interrupts                
-00013464  rf4463_enter_rx_mode                   
-00013b26  rf4463_enter_standby_mode              
-0001373e  rf4463_enter_tx_mode                   
-00013a9c  rf4463_fifo_reset                      
-00012e1a  rf4463_get_cmd                         
-00013a4c  rf4463_gpio_init                       
-000138e2  rf4463_init                            
-00013182  rf4463_power_on_reset                  
-00013cba  rf4463_power_up                        
-000134fc  rf4463_read_rx_fifo                    
-00013358  rf4463_reg_config                      
-0001369a  rf4463_rx_init                         
-00013b8c  rf4463_rx_packet                       
-0001352c  rf4463_set_cmd                         
-00012a3a  rf4463_set_config                      
-00012d7c  rf4463_set_properties                  
-00013766  rf4463_set_rx_interrupt                
-000134ca  rf4463_set_tx_power                    
-00013cc0  rf4463_shutdown                        
-00013cc6  rf4463_slave_disable                   
-00013ccc  rf4463_slave_enable                    
-00013bbe  rf4463_spi_read                        
-00013c3e  rf4463_spi_transfer                    
-00013bce  rf4463_spi_write                       
-0001129a  rf4463_tx_long_packet                  
-00012a94  rf4463_tx_packet                       
-00013bee  rf4463_wait_gpio1                      
-00013c4a  rf4463_wait_nIRQ                       
-000136c4  rf4463_wait_packet_sent                
-0001378e  rf4463_write_tx_fifo                   
+00012524  fsp_decode                             
+000021e4  fsp_decode_pos                         
+000131bc  fsp_encode                             
+00008ab0  fsp_gen_cmd_pkt                        
+000092ec  fsp_gen_data_pkt                       
+000086ca  fsp_gen_pkt                            
+00009900  fsp_init                               
+000021a3  fsp_my_adr                             
+000099b8  fsp_reset                              
+00002152  fsp_semaphore                          
+0000990a  get_hibernation_period_min             
+0000884a  get_last_read_pointer                  
+000138fa  get_last_write_pointer                 
+00010542  get_packet                             
+000096d2  gpio_setup                             
+0000967e  halSPISetup                            
+00010000  housekeeping_task                      
+00002156  i2c0_semaphore                         
+00009314  i2c_pin_reset                          
+00013540  i2c_receive_burst                      
+00013cc8  i2c_send_burst                         
+00009160  i2c_set_clock                          
+000098c4  i2c_set_mode                           
+000098d0  i2c_set_slave                          
+00008aee  i2c_setup                              
+0000215a  imu_queue                              
+0000215e  last_read_position                     
+00002162  last_write_position                    
+00013da8  leave_hibernation                      
+0000982c  main                                   
+00002166  main_radio_queue                       
+00008f08  memcmp                                 
+00008c62  memcpy                                 
+00009640  memset                                 
+000021da  minutes_counter                        
+0000827a  mmcCheckBusy                           
+000094c0  mmcGetResponse                         
+00009574  mmcGetXXResponse                       
+00013d38  mmcGoIdle                              
+00008718  mmcInit                                
+00013978  mmcReadBlock                           
+00011f8e  mmcReadCardSize                        
+000085da  mmcSendCmd                             
+0000862a  mmcSetBlockLength                      
+000139f6  mmcWriteBlock                          
+000088da  mmc_read_sector                        
+00009914  mmc_setup                              
+0000803e  mmc_write_sector                       
+000099f0  ngham_ActionGetNoiseFloor              
+000099f4  ngham_ActionGetRSSI                    
+00008536  ngham_ActionHandlePacket               
+00009a04  ngham_ActionReceptionHalfway           
+00009a06  ngham_ActionReceptionStarted           
+00008fd8  ngham_ActionSendData                   
+00009a08  ngham_ActionSetPacketSize              
+000091ea  ngham_CRC_CCITT                        
+00010f98  ngham_Decode                           
+000102b8  ngham_Encode                           
+0000991e  ngham_Init                             
+00012a84  ngham_InitArrays                       
+00008c9e  ngham_RxPktInit                        
+00008a30  ngham_TxPktGen                         
+00009928  obdh_current_read                      
+0000216a  obdh_misc_queue                        
+0000216e  obdh_status_queue                      
+00009932  obdh_temperature_read                  
+00002172  obdh_uptime_queue                      
+0000998c  obdh_voltage_read                      
+00008d8a  pack_module_data                       
+00002176  payload_brave_queue                    
+00010784  payload_rush_interface_task            
+0000217a  payload_rush_queue                     
+00013878  pvPortMalloc                           
+0000969a  pvTaskIncrementMutexHeldCount          
+000021a4  pxCurrentTCB                           
+000094e4  pxPortInitialiseStack                  
+00011d22  radioamateur_repeater                  
+00010bc2  read_and_pack_data                     
+00008be6  read_current_state                     
+000099f8  read_fault_flags                       
+00009994  read_reset_cause                       
+0000993c  read_reset_value                       
+00009946  read_time_counter                      
+00009950  read_time_state_changed                
+00013a74  receive_packet                         
+00008cda  request_antenna_mutex                  
+00008920  restore_time_counter                   
+00008dc2  rf4463_check_cts                       
+00008e32  rf4463_check_device                    
+00009404  rf4463_clear_interrupts                
+00008f70  rf4463_enter_rx_mode                   
+000097a8  rf4463_enter_standby_mode              
+00009364  rf4463_enter_tx_mode                   
+00009706  rf4463_fifo_reset                      
+000087b4  rf4463_get_cmd                         
+000096b6  rf4463_gpio_init                       
+00009508  rf4463_init                            
+00008c24  rf4463_power_on_reset                  
+000099be  rf4463_power_up                        
+000090a0  rf4463_read_rx_fifo                    
+00008dfa  rf4463_reg_config                      
+00009298  rf4463_rx_init                         
+000097f8  rf4463_rx_packet                       
+000090d0  rf4463_set_cmd                         
+000082d4  rf4463_set_config                      
+0000867a  rf4463_set_properties                  
+0000938c  rf4463_set_rx_interrupt                
+0000903c  rf4463_set_tx_power                    
+000099c4  rf4463_shutdown                        
+000099ca  rf4463_slave_disable                   
+000099d0  rf4463_slave_enable                    
+0000983c  rf4463_spi_read                        
+000098dc  rf4463_spi_transfer                    
+0000984c  rf4463_spi_write                       
+000120b2  rf4463_tx_long_packet                  
+0000832e  rf4463_tx_packet                       
+0000988c  rf4463_wait_gpio1                      
+000098e8  rf4463_wait_nIRQ                       
+000092c2  rf4463_wait_packet_sent                
+000093b4  rf4463_write_tx_fifo                   
 00001fe2  rs_cb                                  
+00002098  rush_data                              
+0000999c  rush_delay_ms                          
+0001338e  rush_experiment_log                    
+00013e12  rush_experiment_perform                
+0000906e  rush_overtemperature_check             
+00008102  rush_power_state                       
+00013e7a  rush_read                              
+00009964  rush_setup                             
+00008162  rush_write                             
 00001c00  rx_pkt                                 
 00001f18  satellite_data                         
-00012c3a  send_data                              
-00011d58  send_periodic_data                     
-0001088c  send_requested_data                    
-000114da  send_reset_charge_command              
-00013c56  set_hibernation_period_min             
-00012f82  setup_hardware                         
-0000213e  solar_panels_queue                     
-00002142  spi1_semaphore                         
-00012fc6  spiReadFrame                           
-00013b52  spiSendByte                            
-00012e66  spiSendFrame                           
-0001394c  spi_clock_setup                        
-00013804  spi_rx_multiple                        
-00013906  spi_setup                              
-00013a82  spi_tx                                 
-0001396e  spi_tx_multiple                        
-00002146  status_eps_queue                       
-0000214a  status_imu_queue                       
-0000214e  status_mem1_queue                      
-00002152  status_payload_brave_queue             
-00002156  status_payload_rush_queue              
-00013cd2  system_reboot                          
-000127f0  try_to_receive                         
-0000215a  ttc_queue                              
-0000215e  tx_queue                               
+0001376c  send_command_packet                    
+00008588  send_data                              
+0000821e  send_data_packet                       
+00009100  send_mutex_request                     
+00012e94  send_periodic_data                     
+0001116e  send_requested_data                    
+0001272c  send_reset_charge_command              
+00008766  send_shutdown                          
+000098f4  set_hibernation_period_min             
+00008964  setup_hardware                         
+0000217e  solar_panels_queue                     
+00002182  spi1_semaphore                         
+000089a8  spiReadFrame                           
+000097be  spiSendByte                            
+00008800  spiSendFrame                           
+00009596  spi_clock_setup                        
+0000942a  spi_rx_multiple                        
+00009550  spi_setup                              
+000096ec  spi_tx                                 
+000095b8  spi_tx_multiple                        
+000095da  sspi_rx_multiple                       
+000089ec  sspi_send_bit                          
+00008e68  sspi_tx                                
+00009660  sspi_tx_multiple                       
+00002186  status_eps_queue                       
+0000218a  status_imu_queue                       
+0000218e  status_mem1_queue                      
+00002192  status_payload_brave_queue             
+00002196  status_payload_rush_queue              
+00011932  store_data_task                        
+0000980a  strlen                                 
+000099d6  system_reboot                          
+00013ee2  try_to_receive                         
+00011bdc  ttc_copy_data                          
+0001240e  ttc_interface_task                     
+0000219a  ttc_queue                              
+0000219e  tx_queue                               
 00004400  ucHeap                                 
-00012982  update_last_read_position              
-00011dfe  update_last_telecommand_status         
-000133c6  update_operation_mode                  
-0001304a  update_reset_value                     
-00002192  usCriticalNesting                      
-000132ae  uxListRemove                           
-00013c80  vApplicationIdleHook                   
-00013c8a  vApplicationMallocFailedHook           
-0001382a  vApplicationSetupTimerInterrupt        
-00013c94  vApplicationStackOverflowHook          
-0001366e  vListInitialise                        
-00013ca6  vListInitialiseItem                    
-00012aec  vListInsert                            
-00013850  vListInsertEnd                         
-00011ce2  vPortCooperativeTickISR                
-00013bfc  vPortFree                              
-00011cb2  vPortPreemptiveTickISR                 
-0001382a  vPortSetupTimerInterrupt               
-00011d0e  vPortYield                             
-00011ab0  vTaskDelayUntil                        
-00013cd8  vTaskMissedYield                       
-0001355c  vTaskPlaceOnEventList                  
-0001207a  vTaskPriorityInherit                   
-00013990  vTaskSetTimeOutState                   
-00012b40  vTaskStartScheduler                    
-00013cde  vTaskSuspendAll                        
-000117a8  vTaskSwitchContext                     
+000021d6  ulRunTimeCounterOverflows              
+000081c0  update_last_read_position              
+00012fdc  update_last_telecommand_status         
+000121d6  update_last_write_position             
+00008e9e  update_operation_mode                  
+00008a70  update_reset_value                     
+00008892  update_time_counter                    
+000021e2  usCriticalNesting                      
+00008d50  uxListRemove                           
+0000996e  vApplicationIdleHook                   
+00009978  vApplicationMallocFailedHook           
+00009450  vApplicationSetupTimerInterrupt        
+00009982  vApplicationStackOverflowHook          
+0000985c  vConfigureTimerForRunTimeStats         
+00009242  vListInitialise                        
+000099a4  vListInitialiseItem                    
+0000848e  vListInsert                            
+00009476  vListInsertEnd                         
+00012e1e  vPortCooperativeTickISR                
+0000989a  vPortFree                              
+00012dee  vPortPreemptiveTickISR                 
+00009450  vPortSetupTimerInterrupt               
+00012e4a  vPortYield                             
+00008fa4  vTaskDelay                             
+00012bec  vTaskDelayUntil                        
+000099dc  vTaskMissedYield                       
+00009130  vTaskPlaceOnEventList                  
+000132f4  vTaskPriorityInherit                   
+000135ce  vTaskResume                            
+000095fc  vTaskSetTimeOutState                   
+000083de  vTaskStartScheduler                    
+000129ca  vTaskSuspend                           
+000099e2  vTaskSuspendAll                        
+00011e60  vTaskSwitchContext                     
 0000801c  vTickISREntry                          
-000119fc  verify_key                             
-00013c0a  wait_for_buffer_empty                  
-00013c18  wait_for_data_sent                     
-00013bde  wdti_hold_counter                      
-00013b66  wdti_release_counter                   
-000139b2  wdti_setup                             
-00011d3e  xPortStartScheduler                    
-00013b3c  xQueueCreateMutex                      
-00012b94  xQueueGenericCreate                    
-000104cc  xQueueGenericReceive                   
-00011b5e  xQueueGenericReset                     
-00010a3c  xQueueGenericSend                      
-00011c08  xTaskCheckForTimeOut                   
-00012234  xTaskCreate                            
-00013acc  xTaskGetSchedulerState                 
-000137b6  xTaskGetTickCount                      
-000113be  xTaskIncrementTick                     
-000121a4  xTaskPriorityDisinherit                
-000122be  xTaskRemoveFromEventList               
-000116d0  xTaskResumeAll                         
+00012b38  verify_key                             
+000098a8  wait_for_buffer_empty                  
+000098b6  wait_for_data_sent                     
+000084e2  wdt_task                               
+0000986c  wdti_hold_counter                      
+000097d2  wdti_release_counter                   
+0000987c  wdti_reset_counter                     
+0000961e  wdti_setup                             
+00012e7a  xPortStartScheduler                    
+00009736  xQueueCreateMutex                      
+00008436  xQueueGenericCreate                    
+00010dae  xQueueGenericReceive                   
+00012c9a  xQueueGenericReset                     
+000114c8  xQueueGenericSend                      
+00012d44  xTaskCheckForTimeOut                   
+0001365a  xTaskCreate                            
+000136e4  xTaskGetHandle                         
+0000974e  xTaskGetSchedulerState                 
+000093dc  xTaskGetTickCount                      
+000122f2  xTaskIncrementTick                     
+000134b0  xTaskPriorityDisinherit                
+000137f2  xTaskRemoveFromEventList               
+00012828  xTaskResumeAll                         
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -2483,33 +2654,40 @@ address   name
 00001c00  rx_pkt                                 
 00001f18  satellite_data                         
 00001fe2  rs_cb                                  
-00002106  command_to_payload_rush_queue          
-0000210a  eps_charge_queue                       
-0000210e  eps_queue                              
-00002112  flash_semaphore                        
-00002116  fsp_semaphore                          
-0000211a  i2c0_semaphore                         
-0000211e  imu_queue                              
-00002122  last_read_position                     
-00002126  main_radio_queue                       
-0000212a  obdh_misc_queue                        
-0000212e  obdh_status_queue                      
-00002132  obdh_uptime_queue                      
-00002136  payload_brave_queue                    
-0000213a  payload_rush_queue                     
-0000213e  solar_panels_queue                     
-00002142  spi1_semaphore                         
-00002146  status_eps_queue                       
-0000214a  status_imu_queue                       
-0000214e  status_mem1_queue                      
-00002152  status_payload_brave_queue             
-00002156  status_payload_rush_queue              
-0000215a  ttc_queue                              
-0000215e  tx_queue                               
-00002162  decoder_state                          
-00002164  pxCurrentTCB                           
-0000218e  minutes_counter                        
-00002192  usCriticalNesting                      
+00002098  rush_data                              
+0000213a  card_size                              
+0000213e  command_to_payload_rush_queue          
+00002142  current_data_address                   
+00002146  eps_charge_queue                       
+0000214a  eps_queue                              
+0000214e  flash_semaphore                        
+00002152  fsp_semaphore                          
+00002156  i2c0_semaphore                         
+0000215a  imu_queue                              
+0000215e  last_read_position                     
+00002162  last_write_position                    
+00002166  main_radio_queue                       
+0000216a  obdh_misc_queue                        
+0000216e  obdh_status_queue                      
+00002172  obdh_uptime_queue                      
+00002176  payload_brave_queue                    
+0000217a  payload_rush_queue                     
+0000217e  solar_panels_queue                     
+00002182  spi1_semaphore                         
+00002186  status_eps_queue                       
+0000218a  status_imu_queue                       
+0000218e  status_mem1_queue                      
+00002192  status_payload_brave_queue             
+00002196  status_payload_rush_queue              
+0000219a  ttc_queue                              
+0000219e  tx_queue                               
+000021a2  decoder_state                          
+000021a3  fsp_my_adr                             
+000021a4  pxCurrentTCB                           
+000021d6  ulRunTimeCounterOverflows              
+000021da  minutes_counter                        
+000021e2  usCriticalNesting                      
+000021e4  fsp_decode_pos                         
 00002360  _stack                                 
 00002400  __STACK_END                            
 00004400  fram_ipe_end                           
@@ -2521,21 +2699,227 @@ address   name
 0000801c  vTickISREntry                          
 0000802c  WDT_ISR                                
 00008036  __TI_ISR_TRAP                          
-0000803e  crc_ccitt_table                        
-0000823e  RF4463_CONFIGURATION_DATA              
-000083aa  ccsds_poly                             
-000084aa  NGH_SIZE_TAG                           
-00008504  NGH_PAR_SIZE                           
-0000850c  NGH_PL_PAR_SIZE                        
-00008514  NGH_PL_SIZE                            
-0000851c  NGH_PL_SIZE_FULL                       
-0000852a  NGH_PREAMBLE                           
-0000852b  NGH_PREAMBLE_FOUR_LEVEL                
-00008530  NGH_SYNC                               
-00008534  __TI_Handler_Table_Base                
-00008540  __TI_Handler_Table_Limit               
-00008550  __TI_CINIT_Base                        
-00008560  __TI_CINIT_Limit                       
+0000803e  mmc_write_sector                       
+00008102  rush_power_state                       
+00008162  rush_write                             
+000081c0  update_last_read_position              
+0000821e  send_data_packet                       
+0000827a  mmcCheckBusy                           
+000082d4  rf4463_set_config                      
+0000832e  rf4463_tx_packet                       
+00008386  __mspabi_divul                         
+00008386  __mspabi_remul                         
+000083de  vTaskStartScheduler                    
+00008436  xQueueGenericCreate                    
+0000848e  vListInsert                            
+000084e2  wdt_task                               
+00008536  ngham_ActionHandlePacket               
+00008588  send_data                              
+000085da  mmcSendCmd                             
+0000862a  mmcSetBlockLength                      
+0000867a  rf4463_set_properties                  
+000086ca  fsp_gen_pkt                            
+00008718  mmcInit                                
+00008766  send_shutdown                          
+000087b4  rf4463_get_cmd                         
+00008800  spiSendFrame                           
+0000884a  get_last_read_pointer                  
+00008892  update_time_counter                    
+000088da  mmc_read_sector                        
+00008920  restore_time_counter                   
+00008964  setup_hardware                         
+000089a8  spiReadFrame                           
+000089ec  sspi_send_bit                          
+00008a30  ngham_TxPktGen                         
+00008a70  update_reset_value                     
+00008ab0  fsp_gen_cmd_pkt                        
+00008aee  i2c_setup                              
+00008b2c  __mspabi_sral_15                       
+00008b30  __mspabi_sral_14                       
+00008b34  __mspabi_sral_13                       
+00008b38  __mspabi_sral_12                       
+00008b3c  __mspabi_sral_11                       
+00008b40  __mspabi_sral_10                       
+00008b44  __mspabi_sral_9                        
+00008b48  __mspabi_sral_8                        
+00008b4c  __mspabi_sral_7                        
+00008b50  __mspabi_sral_6                        
+00008b54  __mspabi_sral_5                        
+00008b58  __mspabi_sral_4                        
+00008b5c  __mspabi_sral_3                        
+00008b60  __mspabi_sral_2                        
+00008b64  __mspabi_sral_1                        
+00008b6a  __mspabi_slll_15                       
+00008b6e  __mspabi_slll_14                       
+00008b72  __mspabi_slll_13                       
+00008b76  __mspabi_slll_12                       
+00008b7a  __mspabi_slll_11                       
+00008b7e  __mspabi_slll_10                       
+00008b82  __mspabi_slll_9                        
+00008b86  __mspabi_slll_8                        
+00008b8a  __mspabi_slll_7                        
+00008b8e  __mspabi_slll_6                        
+00008b92  __mspabi_slll_5                        
+00008b96  __mspabi_slll_4                        
+00008b9a  __mspabi_slll_3                        
+00008b9e  __mspabi_slll_2                        
+00008ba2  __mspabi_slll_1                        
+00008ba8  __mspabi_srll_15                       
+00008bac  __mspabi_srll_14                       
+00008bb0  __mspabi_srll_13                       
+00008bb4  __mspabi_srll_12                       
+00008bb8  __mspabi_srll_11                       
+00008bbc  __mspabi_srll_10                       
+00008bc0  __mspabi_srll_9                        
+00008bc4  __mspabi_srll_8                        
+00008bc8  __mspabi_srll_7                        
+00008bcc  __mspabi_srll_6                        
+00008bd0  __mspabi_srll_5                        
+00008bd4  __mspabi_srll_4                        
+00008bd8  __mspabi_srll_3                        
+00008bdc  __mspabi_srll_2                        
+00008be0  __mspabi_srll_1                        
+00008be6  read_current_state                     
+00008c24  rf4463_power_on_reset                  
+00008c62  memcpy                                 
+00008c9e  ngham_RxPktInit                        
+00008cda  request_antenna_mutex                  
+00008d50  uxListRemove                           
+00008d8a  pack_module_data                       
+00008dc2  rf4463_check_cts                       
+00008dfa  rf4463_reg_config                      
+00008e32  rf4463_check_device                    
+00008e68  sspi_tx                                
+00008e9e  update_operation_mode                  
+00008ed4  crc16_CCITT                            
+00008f08  memcmp                                 
+00008f70  rf4463_enter_rx_mode                   
+00008fa4  vTaskDelay                             
+00008fd8  ngham_ActionSendData                   
+0000903c  rf4463_set_tx_power                    
+0000906e  rush_overtemperature_check             
+000090a0  rf4463_read_rx_fifo                    
+000090d0  rf4463_set_cmd                         
+00009100  send_mutex_request                     
+00009130  vTaskPlaceOnEventList                  
+00009160  i2c_set_clock                          
+000091ea  ngham_CRC_CCITT                        
+00009242  vListInitialise                        
+00009298  rf4463_rx_init                         
+000092c2  rf4463_wait_packet_sent                
+000092ec  fsp_gen_data_pkt                       
+00009314  i2c_pin_reset                          
+00009364  rf4463_enter_tx_mode                   
+0000938c  rf4463_set_rx_interrupt                
+000093b4  rf4463_write_tx_fifo                   
+000093dc  xTaskGetTickCount                      
+00009404  rf4463_clear_interrupts                
+0000942a  spi_rx_multiple                        
+00009450  vApplicationSetupTimerInterrupt        
+00009450  vPortSetupTimerInterrupt               
+00009476  vListInsertEnd                         
+0000949c  __TI_zero_init                         
+000094c0  mmcGetResponse                         
+000094e4  pxPortInitialiseStack                  
+00009508  rf4463_init                            
+0000952c  __mspabi_mpyl_f5hw                     
+00009550  spi_setup                              
+00009574  mmcGetXXResponse                       
+00009596  spi_clock_setup                        
+000095b8  spi_tx_multiple                        
+000095da  sspi_rx_multiple                       
+000095fc  vTaskSetTimeOutState                   
+0000961e  wdti_setup                             
+00009640  memset                                 
+00009660  sspi_tx_multiple                       
+0000967e  halSPISetup                            
+0000969a  pvTaskIncrementMutexHeldCount          
+000096b6  rf4463_gpio_init                       
+000096d2  gpio_setup                             
+000096ec  spi_tx                                 
+00009706  rf4463_fifo_reset                      
+0000971e  __mspabi_mpyi_f5hw                     
+00009736  xQueueCreateMutex                      
+0000974e  xTaskGetSchedulerState                 
+00009766  __TI_decompress_none                   
+000097a8  rf4463_enter_standby_mode              
+000097be  spiSendByte                            
+000097d2  wdti_release_counter                   
+000097e6  encode_rs_char                         
+000097f8  rf4463_rx_packet                       
+0000980a  strlen                                 
+0000981c  __mspabi_srll                          
+0000982c  main                                   
+0000983c  rf4463_spi_read                        
+0000984c  rf4463_spi_write                       
+0000985c  vConfigureTimerForRunTimeStats         
+0000986c  wdti_hold_counter                      
+0000987c  wdti_reset_counter                     
+0000988c  rf4463_wait_gpio1                      
+0000989a  vPortFree                              
+000098a8  wait_for_buffer_empty                  
+000098b6  wait_for_data_sent                     
+000098c4  i2c_set_mode                           
+000098d0  i2c_set_slave                          
+000098dc  rf4463_spi_transfer                    
+000098e8  rf4463_wait_nIRQ                       
+000098f4  set_hibernation_period_min             
+00009900  fsp_init                               
+0000990a  get_hibernation_period_min             
+00009914  mmc_setup                              
+0000991e  ngham_Init                             
+00009928  obdh_current_read                      
+00009932  obdh_temperature_read                  
+0000993c  read_reset_value                       
+00009946  read_time_counter                      
+00009950  read_time_state_changed                
+0000995a  __mspabi_srli                          
+00009964  rush_setup                             
+0000996e  vApplicationIdleHook                   
+00009978  vApplicationMallocFailedHook           
+00009982  vApplicationStackOverflowHook          
+0000998c  obdh_voltage_read                      
+00009994  read_reset_cause                       
+0000999c  rush_delay_ms                          
+000099a4  vListInitialiseItem                    
+000099ac  C$$EXIT                                
+000099ac  abort                                  
+000099b2  flash_read_long                        
+000099b8  fsp_reset                              
+000099be  rf4463_power_up                        
+000099c4  rf4463_shutdown                        
+000099ca  rf4463_slave_disable                   
+000099d0  rf4463_slave_enable                    
+000099d6  system_reboot                          
+000099dc  vTaskMissedYield                       
+000099e2  vTaskSuspendAll                        
+000099e8  _system_pre_init                       
+000099ec  flash_read_single                      
+000099f0  ngham_ActionGetNoiseFloor              
+000099f4  ngham_ActionGetRSSI                    
+000099f8  read_fault_flags                       
+000099fc  _system_post_cinit                     
+000099fe  flash_erase                            
+00009a00  flash_write_long                       
+00009a02  flash_write_single                     
+00009a04  ngham_ActionReceptionHalfway           
+00009a06  ngham_ActionReceptionStarted           
+00009a08  ngham_ActionSetPacketSize              
+00009a0a  crc_ccitt_table                        
+00009c0a  RF4463_CONFIGURATION_DATA              
+00009d76  ccsds_poly                             
+00009fb0  NGH_SIZE_TAG                           
+0000a004  NGH_PAR_SIZE                           
+0000a00c  NGH_PL_PAR_SIZE                        
+0000a014  NGH_PL_SIZE                            
+0000a01c  NGH_PL_SIZE_FULL                       
+0000a024  NGH_PREAMBLE                           
+0000a025  NGH_PREAMBLE_FOUR_LEVEL                
+0000a02a  NGH_SYNC                               
+0000a02e  __TI_Handler_Table_Base                
+0000a03a  __TI_Handler_Table_Limit               
+0000a04c  __TI_CINIT_Base                        
+0000a05c  __TI_CINIT_Limit                       
 0000ffcc  __TI_int30                             
 0000ffce  __TI_int31                             
 0000ffd0  __TI_int32                             
@@ -2562,209 +2946,74 @@ address   name
 0000fffa  __TI_int53                             
 0000fffc  __TI_int54                             
 0000fffe  _reset_vector                          
-00010000  ngham_Encode                           
-0001028a  get_packet                             
-000104cc  xQueueGenericReceive                   
-000106b6  ngham_Decode                           
-0001088c  send_requested_data                    
-00010a3c  xQueueGenericSend                      
-00010bd4  create_tasks                           
-00010d44  enable_rush                            
-00010eae  communications_task                    
-00011010  enter_in_hibernation                   
-0001115c  radioamateur_repeater                  
-0001129a  rf4463_tx_long_packet                  
-000113be  xTaskIncrementTick                     
-000114da  send_reset_charge_command              
-000116d0  xTaskResumeAll                         
-000117a8  vTaskSwitchContext                     
-0001187e  answer_ping                            
-00011948  ngham_InitArrays                       
-000119fc  verify_key                             
-00011ab0  vTaskDelayUntil                        
-00011b5e  xQueueGenericReset                     
-00011c08  xTaskCheckForTimeOut                   
-00011cb2  vPortPreemptiveTickISR                 
-00011ce2  vPortCooperativeTickISR                
-00011d0e  vPortYield                             
-00011d3e  xPortStartScheduler                    
-00011d58  send_periodic_data                     
-00011dfe  update_last_telecommand_status         
-0001207a  vTaskPriorityInherit                   
-000121a4  xTaskPriorityDisinherit                
-00012234  xTaskCreate                            
-000122be  xTaskRemoveFromEventList               
-00012344  pvPortMalloc                           
-000123c6  get_last_write_pointer                 
-00012444  mmcReadBlock                           
-000124c2  mmcWriteBlock                          
-00012540  __TI_auto_init_nobinit_nopinit_hold_wdt
-000125b8  __TI_decompress_lzss                   
-0001262e  decode_request_data_telecommand        
-000126a2  decode_telecommand                     
-00012716  mmcGoIdle                              
-00012786  leave_hibernation                      
-000127f0  try_to_receive                         
-000128be  mmc_write_sector                       
-00012982  update_last_read_position              
-000129e0  mmcCheckBusy                           
-00012a3a  rf4463_set_config                      
-00012a94  rf4463_tx_packet                       
-00012aec  vListInsert                            
-00012b40  vTaskStartScheduler                    
-00012b94  xQueueGenericCreate                    
-00012be8  ngham_ActionHandlePacket               
-00012c3a  send_data                              
-00012c8c  calculate_read_position                
-00012cdc  mmcSendCmd                             
-00012d2c  mmcSetBlockLength                      
-00012d7c  rf4463_set_properties                  
-00012dcc  mmcInit                                
-00012e1a  rf4463_get_cmd                         
-00012e66  spiSendFrame                           
-00012eb0  get_last_read_pointer                  
-00012ef8  mmc_read_sector                        
-00012f3e  restore_time_counter                   
-00012f82  setup_hardware                         
-00012fc6  spiReadFrame                           
-0001300a  ngham_TxPktGen                         
-0001304a  update_reset_value                     
-0001308a  i2c_setup                              
-000130c8  __mspabi_sral_15                       
-000130cc  __mspabi_sral_14                       
-000130d0  __mspabi_sral_13                       
-000130d4  __mspabi_sral_12                       
-000130d8  __mspabi_sral_11                       
-000130dc  __mspabi_sral_10                       
-000130e0  __mspabi_sral_9                        
-000130e4  __mspabi_sral_8                        
-000130e8  __mspabi_sral_7                        
-000130ec  __mspabi_sral_6                        
-000130f0  __mspabi_sral_5                        
-000130f4  __mspabi_sral_4                        
-000130f8  __mspabi_sral_3                        
-000130fc  __mspabi_sral_2                        
-00013100  __mspabi_sral_1                        
-00013106  __mspabi_slll_15                       
-0001310a  __mspabi_slll_14                       
-0001310e  __mspabi_slll_13                       
-00013112  __mspabi_slll_12                       
-00013116  __mspabi_slll_11                       
-0001311a  __mspabi_slll_10                       
-0001311e  __mspabi_slll_9                        
-00013122  __mspabi_slll_8                        
-00013126  __mspabi_slll_7                        
-0001312a  __mspabi_slll_6                        
-0001312e  __mspabi_slll_5                        
-00013132  __mspabi_slll_4                        
-00013136  __mspabi_slll_3                        
-0001313a  __mspabi_slll_2                        
-0001313e  __mspabi_slll_1                        
-00013144  read_current_state                     
-00013182  rf4463_power_on_reset                  
-000131c0  memcpy                                 
-000131fc  ngham_RxPktInit                        
-00013238  request_antenna_mutex                  
-000132ae  uxListRemove                           
-000132e8  pack_module_data                       
-00013320  rf4463_check_cts                       
-00013358  rf4463_reg_config                      
-00013390  rf4463_check_device                    
-000133c6  update_operation_mode                  
-000133fc  memcmp                                 
-00013464  rf4463_enter_rx_mode                   
-00013498  ngham_ActionSendData                   
-000134ca  rf4463_set_tx_power                    
-000134fc  rf4463_read_rx_fifo                    
-0001352c  rf4463_set_cmd                         
-0001355c  vTaskPlaceOnEventList                  
-0001358c  i2c_set_clock                          
-00013616  ngham_CRC_CCITT                        
-0001366e  vListInitialise                        
-0001369a  rf4463_rx_init                         
-000136c4  rf4463_wait_packet_sent                
-000136ee  i2c_pin_reset                          
-0001373e  rf4463_enter_tx_mode                   
-00013766  rf4463_set_rx_interrupt                
-0001378e  rf4463_write_tx_fifo                   
-000137b6  xTaskGetTickCount                      
-000137de  rf4463_clear_interrupts                
-00013804  spi_rx_multiple                        
-0001382a  vApplicationSetupTimerInterrupt        
-0001382a  vPortSetupTimerInterrupt               
-00013850  vListInsertEnd                         
-00013876  __TI_zero_init                         
-0001389a  mmcGetResponse                         
-000138be  pxPortInitialiseStack                  
-000138e2  rf4463_init                            
-00013906  spi_setup                              
-0001392a  mmcGetXXResponse                       
-0001394c  spi_clock_setup                        
-0001396e  spi_tx_multiple                        
-00013990  vTaskSetTimeOutState                   
-000139b2  wdti_setup                             
-000139d4  memset                                 
-00013a14  halSPISetup                            
-00013a30  pvTaskIncrementMutexHeldCount          
-00013a4c  rf4463_gpio_init                       
-00013a68  gpio_setup                             
-00013a82  spi_tx                                 
-00013a9c  rf4463_fifo_reset                      
-00013ab4  __mspabi_mpyi_f5hw                     
-00013acc  xTaskGetSchedulerState                 
-00013ae4  __TI_decompress_none                   
-00013b26  rf4463_enter_standby_mode              
-00013b3c  xQueueCreateMutex                      
-00013b52  spiSendByte                            
-00013b66  wdti_release_counter                   
-00013b7a  encode_rs_char                         
-00013b8c  rf4463_rx_packet                       
-00013b9e  __mspabi_srll                          
-00013bae  main                                   
-00013bbe  rf4463_spi_read                        
-00013bce  rf4463_spi_write                       
-00013bde  wdti_hold_counter                      
-00013bee  rf4463_wait_gpio1                      
-00013bfc  vPortFree                              
-00013c0a  wait_for_buffer_empty                  
-00013c18  wait_for_data_sent                     
-00013c26  i2c_set_mode                           
-00013c32  i2c_set_slave                          
-00013c3e  rf4463_spi_transfer                    
-00013c4a  rf4463_wait_nIRQ                       
-00013c56  set_hibernation_period_min             
-00013c62  ngham_Init                             
-00013c6c  read_reset_value                       
-00013c76  read_time_counter                      
-00013c80  vApplicationIdleHook                   
-00013c8a  vApplicationMallocFailedHook           
-00013c94  vApplicationStackOverflowHook          
-00013c9e  read_reset_cause                       
-00013ca6  vListInitialiseItem                    
-00013cae  C$$EXIT                                
-00013cae  abort                                  
-00013cb4  flash_read_long                        
-00013cba  rf4463_power_up                        
-00013cc0  rf4463_shutdown                        
-00013cc6  rf4463_slave_disable                   
-00013ccc  rf4463_slave_enable                    
-00013cd2  system_reboot                          
-00013cd8  vTaskMissedYield                       
-00013cde  vTaskSuspendAll                        
-00013ce4  _system_pre_init                       
-00013ce8  flash_read_single                      
-00013cec  ngham_ActionGetNoiseFloor              
-00013cf0  ngham_ActionGetRSSI                    
-00013cf4  _system_post_cinit                     
-00013cf6  flash_erase                            
-00013cf8  flash_write_long                       
-00013cfa  flash_write_single                     
-00013cfc  ngham_ActionReceptionHalfway           
-00013cfe  ngham_ActionReceptionStarted           
-00013d00  ngham_ActionSetPacketSize              
+00010000  housekeeping_task                      
+000102b8  ngham_Encode                           
+00010542  get_packet                             
+00010784  payload_rush_interface_task            
+000109b2  create_tasks                           
+00010bc2  read_and_pack_data                     
+00010dae  xQueueGenericReceive                   
+00010f98  ngham_Decode                           
+0001116e  send_requested_data                    
+0001131e  adc_read                               
+000114c8  xQueueGenericSend                      
+00011660  enable_rush                            
+000117ca  communications_task                    
+00011932  store_data_task                        
+00011a90  enter_in_hibernation                   
+00011bdc  ttc_copy_data                          
+00011d22  radioamateur_repeater                  
+00011e60  vTaskSwitchContext                     
+00011f8e  mmcReadCardSize                        
+000120b2  rf4463_tx_long_packet                  
+000121d6  update_last_write_position             
+000122f2  xTaskIncrementTick                     
+0001240e  ttc_interface_task                     
+00012524  fsp_decode                             
+0001272c  send_reset_charge_command              
+00012828  xTaskResumeAll                         
+00012900  answer_ping                            
+000129ca  vTaskSuspend                           
+00012a84  ngham_InitArrays                       
+00012b38  verify_key                             
+00012bec  vTaskDelayUntil                        
+00012c9a  xQueueGenericReset                     
+00012d44  xTaskCheckForTimeOut                   
+00012dee  vPortPreemptiveTickISR                 
+00012e1e  vPortCooperativeTickISR                
+00012e4a  vPortYield                             
+00012e7a  xPortStartScheduler                    
+00012e94  send_periodic_data                     
+00012fdc  update_last_telecommand_status         
+000131bc  fsp_encode                             
+000132f4  vTaskPriorityInherit                   
+0001338e  rush_experiment_log                    
+000134b0  xTaskPriorityDisinherit                
+00013540  i2c_receive_burst                      
+000135ce  vTaskResume                            
+0001365a  xTaskCreate                            
+000136e4  xTaskGetHandle                         
+0001376c  send_command_packet                    
+000137f2  xTaskRemoveFromEventList               
+00013878  pvPortMalloc                           
+000138fa  get_last_write_pointer                 
+00013978  mmcReadBlock                           
+000139f6  mmcWriteBlock                          
+00013a74  receive_packet                         
+00013af2  __TI_auto_init_nobinit_nopinit_hold_wdt
+00013b6a  __TI_decompress_lzss                   
+00013be0  decode_request_data_telecommand        
+00013c54  decode_telecommand                     
+00013cc8  i2c_send_burst                         
+00013d38  mmcGoIdle                              
+00013da8  leave_hibernation                      
+00013e12  rush_experiment_perform                
+00013e7a  rush_read                              
+00013ee2  try_to_receive                         
+00013fb0  calculate_read_position                
 ffffffff  __TI_pprof_out_hndl                    
 ffffffff  __TI_prof_data_size                    
 ffffffff  __TI_prof_data_start                   
 ffffffff  __c_args__                             
 
-[1067 symbols]
+[1145 symbols]
