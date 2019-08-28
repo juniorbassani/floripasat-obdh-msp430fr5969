@@ -41,6 +41,14 @@
 			<value>$%7BPARENT-3-ORIGINAL_PROJECT_ROOT%7D</value>
 		</variable>
 		<variable>
+			<name>FREERTOS_ROOT1</name>
+			<value>$%7BCG_TOOL_ROOT%7D/home/junior/Downloads/FreeRTOSv10.2.1</value>
+		</variable>
+		<variable>
+			<name>FREERTOS_ROOT12</name>
+			<value>$%7BPARENT-10-FREERTOS_ROOT1%7D/Downloads/FreeRTOSv10.2.1</value>
+		</variable>
+		<variable>
 			<name>ORIGINAL_PROJECT_ROOT</name>
 			<value>file:/home/junior/Dropbox/cubesats/FreeRTOSv10.2.1-unmodified/FreeRTOS/Demo/MSP430X_MSP430FR5969_LaunchPad_IAR_CCS</value>
 		</variable>

@@ -65,6 +65,7 @@ include/obdh.obj: ../include/../src/payload_rush_interface_task.h
 include/obdh.obj: ../include/../src/../interface/payload_rush.h
 include/obdh.obj: ../include/../src/ttc_interface_task.h
 include/obdh.obj: ../include/../src/wdt_task.h
+include/obdh.obj: ../include/../src/runtime_stats_task.h
 
 ../include/obdh.c: 
 ../include/obdh.h: 
@@ -131,3 +132,4 @@ include/obdh.obj: ../include/../src/wdt_task.h
 ../include/../src/../interface/payload_rush.h: 
 ../include/../src/ttc_interface_task.h: 
 ../include/../src/wdt_task.h: 
+../include/../src/runtime_stats_task.h: 

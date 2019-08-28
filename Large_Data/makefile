@@ -18,7 +18,7 @@ ORDERED_OBJS += \
 "./FreeRTOS_Source/timers.obj" \
 "./FreeRTOS_Source/portable/CCS/MSP430X/port.obj" \
 "./FreeRTOS_Source/portable/CCS/MSP430X/portext.obj" \
-"./FreeRTOS_Source/portable/MemMang/heap_1.obj" \
+"./FreeRTOS_Source/portable/MemMang/heap_4.obj" \
 "./driver/adc.obj" \
 "./driver/flash.obj" \
 "./driver/i2c.obj" \
@@ -42,6 +42,7 @@ ORDERED_OBJS += \
 "./src/communications_task.obj" \
 "./src/housekeeping_task.obj" \
 "./src/payload_rush_interface_task.obj" \
+"./src/runtime_stats_task.obj" \
 "./src/store_data_task.obj" \
 "./src/ttc_interface_task.obj" \
 "./src/wdt_task.obj" \
@@ -224,9 +225,10 @@ floripasat.txt: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "CCS_Only/RegTest.obj" "FreeRTOS_Source/croutine.obj" "FreeRTOS_Source/event_groups.obj" "FreeRTOS_Source/list.obj" "FreeRTOS_Source/queue.obj" "FreeRTOS_Source/tasks.obj" "FreeRTOS_Source/timers.obj" "FreeRTOS_Source/portable/CCS/MSP430X/port.obj" "FreeRTOS_Source/portable/CCS/MSP430X/portext.obj" "FreeRTOS_Source/portable/MemMang/heap_1.obj" "driver/adc.obj" "driver/flash.obj" "driver/i2c.obj" "driver/spi.obj" "driver/wdti.obj" "include/msp_internal.obj" "include/obdh.obj" "interface/eps.obj" "interface/payload_rush.obj" "interface/solar_panel.obj" "interface/ttc.obj" "libs/ngham/ccsds_scrambler.obj" "libs/ngham/crc_ccitt.obj" "libs/ngham/fec.obj" "libs/ngham/ngham.obj" "libs/ngham/ngham_extension.obj" "libs/ngham/ngham_packets.obj" "libs/ngham/platform/platform.obj" "rf4463/rf4463.obj" "rf4463/rf4463_spi.obj" "src/communications_task.obj" "src/housekeeping_task.obj" "src/payload_rush_interface_task.obj" "src/store_data_task.obj" "src/ttc_interface_task.obj" "src/wdt_task.obj" 
-	-$(RM) "util/MMC_lib/hal_SPI.obj" "util/MMC_lib/mmc.obj" "util/crc.obj" "util/link.obj" "util/misc.obj" "util/sspi.obj" "util/fsp/crc16.obj" "util/fsp/fsp.obj" 
-	-$(RM) "main.d" "FreeRTOS_Source/croutine.d" "FreeRTOS_Source/event_groups.d" "FreeRTOS_Source/list.d" "FreeRTOS_Source/queue.d" "FreeRTOS_Source/tasks.d" "FreeRTOS_Source/timers.d" "FreeRTOS_Source/portable/CCS/MSP430X/port.d" "FreeRTOS_Source/portable/MemMang/heap_1.d" "driver/adc.d" "driver/flash.d" "driver/i2c.d" "driver/spi.d" "driver/wdti.d" "include/msp_internal.d" "include/obdh.d" "interface/eps.d" "interface/payload_rush.d" "interface/solar_panel.d" "interface/ttc.d" "libs/ngham/ccsds_scrambler.d" "libs/ngham/crc_ccitt.d" "libs/ngham/fec.d" "libs/ngham/ngham.d" "libs/ngham/ngham_extension.d" "libs/ngham/ngham_packets.d" "libs/ngham/platform/platform.d" "rf4463/rf4463.d" "rf4463/rf4463_spi.d" "src/communications_task.d" "src/housekeeping_task.d" "src/payload_rush_interface_task.d" "src/store_data_task.d" "src/ttc_interface_task.d" "src/wdt_task.d" "util/MMC_lib/hal_SPI.d" "util/MMC_lib/mmc.d" "util/crc.d" "util/link.d" "util/misc.d" "util/sspi.d" "util/fsp/crc16.d" "util/fsp/fsp.d" 
+	-$(RM) "main.obj" "CCS_Only/RegTest.obj" "FreeRTOS_Source/croutine.obj" "FreeRTOS_Source/event_groups.obj" "FreeRTOS_Source/list.obj" "FreeRTOS_Source/queue.obj" "FreeRTOS_Source/tasks.obj" "FreeRTOS_Source/timers.obj" "FreeRTOS_Source/portable/CCS/MSP430X/port.obj" "FreeRTOS_Source/portable/CCS/MSP430X/portext.obj" "FreeRTOS_Source/portable/MemMang/heap_4.obj" "driver/adc.obj" "driver/flash.obj" "driver/i2c.obj" "driver/spi.obj" "driver/wdti.obj" "include/msp_internal.obj" "include/obdh.obj" "interface/eps.obj" "interface/payload_rush.obj" "interface/solar_panel.obj" "interface/ttc.obj" "libs/ngham/ccsds_scrambler.obj" "libs/ngham/crc_ccitt.obj" "libs/ngham/fec.obj" "libs/ngham/ngham.obj" "libs/ngham/ngham_extension.obj" "libs/ngham/ngham_packets.obj" "libs/ngham/platform/platform.obj" "rf4463/rf4463.obj" "rf4463/rf4463_spi.obj" "src/communications_task.obj" "src/housekeeping_task.obj" "src/payload_rush_interface_task.obj" "src/runtime_stats_task.obj" "src/store_data_task.obj" "src/ttc_interface_task.obj" 
+	-$(RM) "src/wdt_task.obj" "util/MMC_lib/hal_SPI.obj" "util/MMC_lib/mmc.obj" "util/crc.obj" "util/link.obj" "util/misc.obj" "util/sspi.obj" "util/fsp/crc16.obj" "util/fsp/fsp.obj" 
+	-$(RM) "main.d" "FreeRTOS_Source/croutine.d" "FreeRTOS_Source/event_groups.d" "FreeRTOS_Source/list.d" "FreeRTOS_Source/queue.d" "FreeRTOS_Source/tasks.d" "FreeRTOS_Source/timers.d" "FreeRTOS_Source/portable/CCS/MSP430X/port.d" "FreeRTOS_Source/portable/MemMang/heap_4.d" "driver/adc.d" "driver/flash.d" "driver/i2c.d" "driver/spi.d" "driver/wdti.d" "include/msp_internal.d" "include/obdh.d" "interface/eps.d" "interface/payload_rush.d" "interface/solar_panel.d" "interface/ttc.d" "libs/ngham/ccsds_scrambler.d" "libs/ngham/crc_ccitt.d" "libs/ngham/fec.d" "libs/ngham/ngham.d" "libs/ngham/ngham_extension.d" "libs/ngham/ngham_packets.d" "libs/ngham/platform/platform.d" "rf4463/rf4463.d" "rf4463/rf4463_spi.d" "src/communications_task.d" "src/housekeeping_task.d" "src/payload_rush_interface_task.d" "src/runtime_stats_task.d" "src/store_data_task.d" "src/ttc_interface_task.d" "src/wdt_task.d" "util/MMC_lib/hal_SPI.d" "util/MMC_lib/mmc.d" "util/crc.d" "util/link.d" "util/misc.d" "util/sspi.d" "util/fsp/crc16.d" 
+	-$(RM) "util/fsp/fsp.d" 
 	-$(RM) "CCS_Only/RegTest.d" "FreeRTOS_Source/portable/CCS/MSP430X/portext.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

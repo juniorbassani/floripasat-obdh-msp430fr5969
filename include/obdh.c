@@ -72,6 +72,7 @@ void create_tasks( void ) {
     //xTaskCreate( imu_interface_task, "IMU", configMINIMAL_STACK_SIZE, NULL, IMU_INTERFACE_TASK_PRIORITY, &imu_interface_task_handle);
     //xTaskCreate( solar_panels_interface_task, "SolarPanels", configMINIMAL_STACK_SIZE, NULL, SOLAR_PANELS_INTERFACE_TASK_PRIORITY, &solar_panels_interface_task_handle);
     xTaskCreate( payload_rush_interface_task, "PayloadRush", configMINIMAL_STACK_SIZE, NULL, PAYLOAD_RUSH_INTERFACE_TASK_PRIORITY, &payload_rush_interface_task_handle );
+    xTaskCreate( runtime_stats_task, "RuntimeStats", 125, NULL, RUNTIME_STATS_TASK_PRIORITY, NULL );
 #ifdef _DEBUG
     //xTaskCreate( debug_task, "DEBUG", 4 * configMINIMAL_STACK_SIZE, NULL, DEBUG_TASK_PRIORITY, &debug_task_handle);
 #endif
@@ -85,6 +86,35 @@ void gpio_setup() {
     P4DIR = BIT6;
 
     rf4463_gpio_init();
+}
+
+void uart_setup(void)
+{
+    // Configure GPIO
+      P2SEL1 |= BIT0 | BIT1;                    // USCI_A0 UART operation
+      P2SEL0 &= ~(BIT0 | BIT1);
+      PJSEL0 |= BIT4 | BIT5;                    // For XT1
+
+      // XT1 Setup
+      CSCTL0_H = CSKEY >> 8;                    // Unlock CS registers
+      CSCTL2 = SELA__LFXTCLK | SELS__DCOCLK | SELM__DCOCLK;
+      CSCTL3 = DIVA__1 | DIVS__1 | DIVM__1;     // Set all dividers
+      CSCTL4 &= ~LFXTOFF;
+      do
+      {
+        CSCTL5 &= ~LFXTOFFG;                    // Clear XT1 fault flag
+        SFRIFG1 &= ~OFIFG;
+      }while (SFRIFG1&OFIFG);                   // Test oscillator fault flag
+      CSCTL0_H = 0;                             // Lock CS registers
+
+      // Configure USCI_A0 for UART mode
+      UCA0CTLW0 = UCSWRST;                      // Put eUSCI in reset
+      UCA0CTLW0 |= UCSSEL__ACLK;                // CLK = ACLK
+      UCA0BR0 = 3;                              // 9600 baud
+      UCA0MCTLW |= 0x5300;                      // 32768/9600 - INT(32768/9600)=0.41
+                                                // UCBRSx value = 0x53 (See UG)
+      UCA0BR1 = 0;
+      UCA0CTL1 &= ~UCSWRST;                     // Initialize eUSCI
 }
 
 void setup_hardware( void ) {
@@ -132,6 +162,8 @@ void setup_hardware( void ) {
      */
     spi_setup(0);
     spi_setup(1);
+
+    uart_setup();
 //
     //debug(SPI_INF_MSG);             /**< Setup SPI                                                          */
 //
@@ -280,6 +312,17 @@ void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName ) {
     taskDISABLE_INTERRUPTS();
     for( ;; );
 }
+
+#pragma vector=TIMER1_A1_VECTOR
+__interrupt void v4RunTimeStatsTimerOverflow( void )
+{
+    TA1CTL &= ~TAIFG;
+
+    /* 16-bit overflow, so add 17th bit. */
+    ulRunTimeCounterOverflows += 0x10000;
+    __bic_SR_register_on_exit( SCG1 + SCG0 + OSCOFF + CPUOFF );
+}
+
 /*-----------------------------------------------------------*/
 
 //int _system_pre_init( void )

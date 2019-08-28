@@ -48,19 +48,19 @@ void port_mapping_uca0(void) {
 // ##MODIFICADO##
 void spi_clock_setup(void) {
     // Configure USCI_A0 for SPI operation
-    UCA0CTLW0 = UCSWRST;                      // **Put state machine in reset**
-    UCA0CTLW0 |= UCMST | UCSYNC | UCCKPL | UCMSB; // 3-pin, 8-bit SPI master
+    //UCA0CTLW0 = UCSWRST;                      // **Put state machine in reset**
+    //UCA0CTLW0 |= UCMST | UCSYNC | UCCKPL | UCMSB; // 3-pin, 8-bit SPI master
                                             // Clock polarity high, MSB
-    UCA0CTLW0 |= UCSSEL__ACLK;                // ACLK
-    UCA0BR0 = 0x02;                           // /2
-    UCA0BR1 = 0;                              //
-    UCA0MCTLW = 0;                            // No modulation
-    UCA0CTLW0 &= ~UCSWRST;                    // **Initialize USCI state machine**
+    //UCA0CTLW0 |= UCSSEL__ACLK;                // ACLK
+    //UCA0BR0 = 0x02;                           // /2
+    //UCA0BR1 = 0;                              //
+    //UCA0MCTLW = 0;                            // No modulation
+    //UCA0CTLW0 &= ~UCSWRST;                    // **Initialize USCI state machine**
 }
 
 // ##MODIFICADO## -- Função adicionada
 void spi1_clock_setup(void) {
-    // Startup clock system with max DCO setting ~8MHz
+    /*// Startup clock system with max DCO setting ~8MHz
     CSCTL0_H = CSKEY >> 8;                    // Unlock clock registers
     CSCTL1 = DCOFSEL_3 | DCORSEL;             // Set DCO to 8MHz
     CSCTL2 = SELA__VLOCLK | SELS__DCOCLK | SELM__DCOCLK;
@@ -79,7 +79,7 @@ void spi1_clock_setup(void) {
     UCA0BR1 = 0x00;
     UCA0MCTLW |= UCOS16 | UCBRF_1;
     UCA0CTLW0 &= ~UCSWRST;                    // Initialize eUSCI
-    UCA0IE |= UCRXIE;                         // Enable USCI_A0 RX interrupt
+    UCA0IE |= UCRXIE;                         // Enable USCI_A0 RX interrupt*/
 }
 
 // ##MODIFICADO##
@@ -87,7 +87,7 @@ void spi_setup(uint8_t interface) {
 
     switch(interface){
     case 0:
-        BIT_SET(SPI0_SEL, SPI0_CLK_PIN | SPI0_MOSI_PIN | SPI0_MISO_PIN );
+        BIT_SET(SPI0_SEL, SPI0_MOSI_PIN | SPI0_MISO_PIN );
         spi_clock_setup();
         //port_mapping_uca0();
         break;

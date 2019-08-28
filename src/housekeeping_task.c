@@ -30,7 +30,6 @@
 
 #include "../src/housekeeping_task.h"
 
-
 void housekeeping_task( void *pvParameters ) {
     TickType_t last_wake_time;
     uint16_t temperature_raw, voltage_raw, current_raw;
@@ -46,8 +45,6 @@ void housekeeping_task( void *pvParameters ) {
     uint32_t current_time;
     uint8_t current_seconds;
     uint8_t flag_updated_time = 0;
-    char stats[240];
-
 
     last_wake_time = xTaskGetTickCount();
 
@@ -156,8 +153,6 @@ void housekeeping_task( void *pvParameters ) {
         xQueueSendToBack(obdh_uptime_queue, (void *)&system_time, portMAX_DELAY);
 
         xQueueSendToBack(obdh_misc_queue, (void *)internal_sensors_data, portMAX_DELAY);
-
-        //vTaskGetRunTimeStats(stats);
 
         if ( (last_wake_time + HOUSEKEEPING_TASK_PERIOD_TICKS) < xTaskGetTickCount() ) {
             last_wake_time = xTaskGetTickCount();

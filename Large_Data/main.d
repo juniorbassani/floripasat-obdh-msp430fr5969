@@ -1,11 +1,6 @@
 # FIXED
 
 main.obj: ../main.c
-main.obj: ../include/obdh.h
-main.obj: ../include/../FreeRTOS_Source/include/FreeRTOS.h
-main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/stddef.h
-main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/_ti_config.h
-main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/linkage.h
 main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/stdint.h
 main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/_stdint40.h
 main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/sys/stdint.h
@@ -14,6 +9,11 @@ main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/in
 main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/machine/_types.h
 main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/machine/_stdint.h
 main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/sys/_stdint.h
+main.obj: ../include/obdh.h
+main.obj: ../include/../FreeRTOS_Source/include/FreeRTOS.h
+main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/stddef.h
+main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/_ti_config.h
+main.obj: /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/linkage.h
 main.obj: ../include/../FreeRTOS_Source/include/../../src/FreeRTOSConfig.h
 main.obj: ../include/../FreeRTOS_Source/include/projdefs.h
 main.obj: ../include/../FreeRTOS_Source/include/portable.h
@@ -65,14 +65,10 @@ main.obj: ../include/../src/payload_rush_interface_task.h
 main.obj: ../include/../src/../interface/payload_rush.h
 main.obj: ../include/../src/ttc_interface_task.h
 main.obj: ../include/../src/wdt_task.h
+main.obj: ../include/../src/runtime_stats_task.h
 main.obj: ../config.h
 
 ../main.c: 
-../include/obdh.h: 
-../include/../FreeRTOS_Source/include/FreeRTOS.h: 
-/home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/stddef.h: 
-/home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/_ti_config.h: 
-/home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/linkage.h: 
 /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/stdint.h: 
 /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/_stdint40.h: 
 /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/sys/stdint.h: 
@@ -81,6 +77,11 @@ main.obj: ../config.h
 /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/machine/_types.h: 
 /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/machine/_stdint.h: 
 /home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/sys/_stdint.h: 
+../include/obdh.h: 
+../include/../FreeRTOS_Source/include/FreeRTOS.h: 
+/home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/stddef.h: 
+/home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/_ti_config.h: 
+/home/junior/ti/ccs910/ccs/tools/compiler/ti-cgt-msp430_18.12.2.LTS/include/linkage.h: 
 ../include/../FreeRTOS_Source/include/../../src/FreeRTOSConfig.h: 
 ../include/../FreeRTOS_Source/include/projdefs.h: 
 ../include/../FreeRTOS_Source/include/portable.h: 
@@ -132,4 +133,5 @@ main.obj: ../config.h
 ../include/../src/../interface/payload_rush.h: 
 ../include/../src/ttc_interface_task.h: 
 ../include/../src/wdt_task.h: 
+../include/../src/runtime_stats_task.h: 
 ../config.h: 
