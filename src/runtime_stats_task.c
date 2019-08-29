@@ -38,20 +38,16 @@ static char stats[240] = {0};
 
 void runtime_stats_task(void *pvParameters)
 {
-    uint8_t count = 0;
     uint16_t i;
 
     while (1) {
-        if ((count++ % 2) == 0) {
-            vTaskDelay(20000);
-        } else {
-            vTaskGetRunTimeStats(stats);
+        vTaskDelay(20000);
+        vTaskGetRunTimeStats(stats);
 
-            for (i = 0; i < strlen(stats); i++) {
-                while(!(UCA0IFG&UCTXIFG));
-                UCA0TXBUF = stats[i];
-                __no_operation();
-            }
+        for (i = 0; i < strlen(stats); i++) {
+            while(!(UCA0IFG&UCTXIFG));
+            UCA0TXBUF = stats[i];
+            __no_operation();
         }
     }
 
