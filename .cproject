@@ -115,7 +115,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="FreeRTOS_Source/portable/MemMang/heap_1.c|src/solar_panels_interface_task.c|interface/wdte.c|interface/mem.c|interface/isis_antenna.c|interface/imu.c|include/antenna.c|IAR_Only" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="FreeRTOS_Source/portable/MemMang/heap_1.c|interface/wdte.c|interface/mem.c|interface/isis_antenna.c|interface/imu.c|include/antenna.c|IAR_Only" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

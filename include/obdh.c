@@ -7,7 +7,8 @@
  *
  * FloripaSat-OBDH is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * the F    int i;
+ * ree Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * FloripaSat-OBDH is distributed in the hope that it will be useful,
@@ -63,16 +64,16 @@ void create_tasks( void ) {
      * Create each task: links with a routine, allocates the requested task
      * stack size, sets the priority, passes parameters and get a handler
      */
-    xTaskCreate( wdt_task, "WDT", configMINIMAL_STACK_SIZE, NULL, WDT_TASK_PRIORITY, &wdt_task_handle );
-    xTaskCreate( communications_task, "Communications", 6 * configMINIMAL_STACK_SIZE, NULL, COMMUNICATIONS_TASK_PRIORITY, &communications_task_handle );
-    xTaskCreate( store_data_task, "StoreData", 11 * configMINIMAL_STACK_SIZE, NULL , STORE_DATA_TASK_PRIORITY, &store_data_task_handle);
-    xTaskCreate( housekeeping_task, "Housekeeping", configMINIMAL_STACK_SIZE, NULL, HOUSEKEEPING_TASK_PRIORITY, &housekeeping_task_handle);
-    xTaskCreate( ttc_interface_task, "TT&C", 4 * configMINIMAL_STACK_SIZE, NULL, TTC_INTERFACE_TASK_PRIORITY, &ttc_interface_task_handle );
+    xTaskCreate( wdt_task, "WDT", configMINIMAL_STACK_SIZE, NULL, 5, &wdt_task_handle );
+    xTaskCreate( communications_task, "Communications", 6 * configMINIMAL_STACK_SIZE, NULL, 5, &communications_task_handle );
+    xTaskCreate( store_data_task, "StoreData", 11 * configMINIMAL_STACK_SIZE, NULL , 5, &store_data_task_handle);
+    xTaskCreate( housekeeping_task, "Housekeeping", configMINIMAL_STACK_SIZE, NULL, 5, &housekeeping_task_handle);
+    xTaskCreate( ttc_interface_task, "TT&C", 4 * configMINIMAL_STACK_SIZE, NULL, 5, &ttc_interface_task_handle );
     //xTaskCreate( eps_interface_task, "EPS", configMINIMAL_STACK_SIZE, NULL, EPS_INTERFACE_TASK_PRIORITY, &eps_interface_task_handle );
     //xTaskCreate( imu_interface_task, "IMU", configMINIMAL_STACK_SIZE, NULL, IMU_INTERFACE_TASK_PRIORITY, &imu_interface_task_handle);
     //xTaskCreate( solar_panels_interface_task, "SolarPanels", configMINIMAL_STACK_SIZE, NULL, SOLAR_PANELS_INTERFACE_TASK_PRIORITY, &solar_panels_interface_task_handle);
-    xTaskCreate( payload_rush_interface_task, "PayloadRush", configMINIMAL_STACK_SIZE, NULL, PAYLOAD_RUSH_INTERFACE_TASK_PRIORITY, &payload_rush_interface_task_handle );
-    xTaskCreate( runtime_stats_task, "RuntimeStats", 125, NULL, RUNTIME_STATS_TASK_PRIORITY, NULL );
+    xTaskCreate( payload_rush_interface_task, "PayloadRush", configMINIMAL_STACK_SIZE, NULL, 5, &payload_rush_interface_task_handle );
+    //xTaskCreate( runtime_stats_task, "RuntimeStats", 125, NULL, RUNTIME_STATS_TASK_PRIORITY, NULL );
 #ifdef _DEBUG
     //xTaskCreate( debug_task, "DEBUG", 4 * configMINIMAL_STACK_SIZE, NULL, DEBUG_TASK_PRIORITY, &debug_task_handle);
 #endif
@@ -144,6 +145,7 @@ void setup_hardware( void ) {
      *  Configure and reset the watchdog timers
      */
     wdti_setup(WATCHDOG, WD_16_SEC);
+    //WDTCTL = WDTPW | WDTHOLD;
 
     clock_setup();
 

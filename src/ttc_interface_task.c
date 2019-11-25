@@ -48,8 +48,9 @@ void ttc_interface_task( void *pvParameters ) {
     store_task_handle = xTaskGetHandle("StoreData");
 
     while(1) {
+        // For debug
+        // P1OUT ^= BIT0;
 
-        P1OUT ^= BIT0;
         xSemaphoreTake(fsp_semaphore, FSP_SEMAPHORE_WAIT_TIME);
         send_data_packet();
         xSemaphoreGive(fsp_semaphore);

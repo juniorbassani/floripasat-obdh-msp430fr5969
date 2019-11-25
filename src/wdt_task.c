@@ -44,7 +44,8 @@ void wdt_task( void *pvParameters )
         BIT_TOGGLE(LED_SYSTEM_OUT, LED_SYSTEM_PIN); /**< Blink a led just for debug purpose */
     #endif
 
-        P1OUT ^= BIT0;
+        // For debug
+        // P1OUT ^= BIT0;
 
         if ( (last_wake_time + WDT_TASK_PERIOD_TICKS) < xTaskGetTickCount() ) {
             last_wake_time = xTaskGetTickCount();

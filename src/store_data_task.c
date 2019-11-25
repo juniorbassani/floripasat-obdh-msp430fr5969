@@ -65,7 +65,9 @@ void store_data_task( void *pvParameters ) {
     }
 
     while(1) {
-        P1OUT ^= BIT0;
+        // For debug
+        // P1OUT ^= BIT0;
+
         /**< Test if memory size is working to report status */
         mem1_status = 0;
         if (xSemaphoreTake(spi1_semaphore, SPI_SEMAPHORE_WAIT_TIME) == pdPASS) {

@@ -49,7 +49,9 @@ void housekeeping_task( void *pvParameters ) {
     last_wake_time = xTaskGetTickCount();
 
     while(1) {
-        P4OUT ^= BIT6;
+        // For debug
+        // P4OUT ^= BIT6;
+
         /* Periodic reset */
         current_time = xTaskGetTickCount() / (uint32_t) configTICK_RATE_HZ;
         if (current_time >= PERIODIC_RESET_TIME) {

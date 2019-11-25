@@ -97,7 +97,9 @@ void communications_task( void *pvParameters ) {
     }
 
     while(1) {
-        P4OUT ^= BIT6;
+        // For debug
+        // P4OUT ^= BIT6;
+
         operation_mode = read_current_operation_mode();
         /**< verify if some telecommand was received on radio */
         data_len = try_to_receive(data);
