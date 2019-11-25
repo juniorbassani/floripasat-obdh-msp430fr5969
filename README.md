@@ -1,14 +1,18 @@
-# Instructions
+# About
 
-## Install Code Composer Studio
+This project is a copy of the OBDH module from Floripa-Sat (https://github.com/floripasat/obdh) modified to run on a MSP430FR5969.
+
+## Instructions
+
+### Install Code Composer Studio
 
 Download Code Composer Studio (http://software-dl.ti.com/ccs/esd/documents/ccs_downloads.html) and enable support for MSP430 microcontrollers when installing.
 
 Install the necessary drivers for the microcontrollers. In ubuntu, by default, it's in $HOME/ti/ccs910/ccs/install_scripts/install_drivers.sh
 
-## Install This Project
+### Install This Project
 
-### Download
+#### Download
 
 ```
 git clone https://github.com/juniorbassani/floripasat-obdh-msp430fr5969.git
@@ -18,7 +22,7 @@ git clone https://github.com/juniorbassani/floripasat-obdh-msp430fr5969.git
 2. Go to File -> Import… -> Code Composer Studio -> CCS Projects -> Browse.
 3. Select the directory in which the repository was downloaded and click Finish.
 
-### Compile and Run
+#### Compile and Run
 
 1. Right-click Project Explorer -> Build Project.
 2. Connect the microcontroller to the host computer.
